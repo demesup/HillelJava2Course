@@ -1,4 +1,4 @@
-package com.hillel.classwork.lesson3;
+package com.hillel.classwork.lesson3.cat;
 
 public class LinkCat {
     public static void main(String[] args) {
