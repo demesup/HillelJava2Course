@@ -6,7 +6,7 @@ public class EqualsCat {
     public static void main(String[] args) {
 
         Cat cat = new Cat();
-        cat.name = "Vasiliy";
+        cat.name = "Murka";
         cat.age = 2;
 
         Cat cat1 = new Cat();
@@ -23,6 +23,12 @@ public class EqualsCat {
             System.out.println(cat + " and " + cat2 + " equals by link");
         }else {
             System.out.println(cat + " and " + cat2 + " not equals by link");
+        }
+
+        if (cat.equals(cat1)) {
+            System.out.println(cat + " and " + cat1 + " equals by values");
+        }else {
+            System.out.println(cat + " and " + cat1 + " not equals by values");
         }
 
 
