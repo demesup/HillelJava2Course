@@ -22,28 +22,27 @@ public class IncreasingSequence {
 
             System.out.println(Arrays.toString(array));
 
-            increasingSequence(array);
+
+            if (increasingSequence(array)) {
+                System.out.println("Массив является возрастающей последовательностью");
+            } else {
+                System.out.println("Массив не является возрастающей последовательностью");
+            }
         } else {
             System.out.println("Для последовательности нужно больше 2 чисел");
         }
 
-    }
 
-    public static void increasingSequence(int[] array) {
-        boolean check = true;
+
+    }
+    public static boolean increasingSequence ( int[] array){
 
         for (int i = 1; i < array.length; i++) {
             if (array[i] <= array[i - 1]) {
-                check = false;
-                break;
+                return false;
             }
         }
+        return true;
 
-        if (check) {
-            System.out.println("Массив является возрастающей последовательностью");
-        } else {
-            System.out.println("Массив не является возрастающей последовательностью");
-        }
     }
-
 }
