@@ -30,34 +30,5 @@ public class PersonMain {
         } else {
             System.out.println(people[2] + " не совпадает с " + people[4]);
         }
-
-        /*Дальше я просто экспериментировала**/
-        System.out.println("\nНачало экспериментов");
-        Bird bird = new Bird("red");
-        System.out.println(bird.equals(people[1]));
-        System.out.println(!people[1].equals(bird));
-
-        System.out.println("Совпадают:");
-        int count = 0;
-        for (int i = 0; i < people.length; i++) {
-            for (int j = 0; j < people.length; j++) {
-                if (i < j && people[i].equals(people[j])) {
-                    System.out.printf(" %d пользователь совпадает с %d пользователем \n", i + 1, j + 1);
-                    count++;
-                }
-            }
-        }
-        System.out.println("Количество совпадений: " + count);
-        System.out.println("Не совпадают:");
-        int number = 0;
-        for (int i = 0; i < people.length; i++) {
-            for (int j = 0; j < people.length; j++) {
-                if (i < j && !people[i].equals(people[j])) {
-                    System.out.printf(" %d пользователь не совпадает с %d пользователем \n", i + 1, j + 1);
-                    number++;
-                }
-            }
-        }
-        System.out.println(" Количество несовпадений: " + number);
     }
 }
