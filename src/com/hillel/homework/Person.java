@@ -60,7 +60,7 @@ public class Person {
     public Person(int password, String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.password=password;
+        this.password = password;
     }
 
     public String getFirstName() {
@@ -95,23 +95,12 @@ public class Person {
                 ", password: '" + password + '\'';
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return password == person.password &&
-                Objects.equals(lastName, person.lastName) && Objects.equals(lastName, person.lastName);
+        return password == person.password && Objects.equals(firstName, person.firstName)
+                && Objects.equals(lastName, person.lastName);
     }
-
-    /**
-     * Это ради эксперимента
-     **/
-    public boolean notEquals(Object o) {
-        if (this != o) return true;
-        if (o != null || getClass() == o.getClass()) return true;
-        Person person = (Person) o;
-        return password != person.password ||
-                !Objects.equals(lastName, person.lastName) || !Objects.equals(lastName, person.lastName);
-    }
-
 }

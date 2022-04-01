@@ -1,5 +1,7 @@
 package com.hillel.homework;
 
+import com.hillel.classwork.lesson3.bird.Bird;
+
 public class PersonMain {
     public static void main(String[] args) {
         Person[] people = new Person[5];
@@ -30,7 +32,12 @@ public class PersonMain {
         }
 
 
+
         /*Дальше я просто экспериментировала**/
+        System.out.println("\nНачало экспериментов");
+        Bird bird= new Bird("red");
+        System.out.println(bird.equals(people[1]));
+        System.out.println(!people[1].equals(bird));
 
         System.out.println("Совпадают:");
         int count = 0;
@@ -48,7 +55,7 @@ public class PersonMain {
         int number = 0;
         for (int i = 0; i < people.length; i++) {
             for (int j = 0; j < people.length; j++) {
-                if (i<j  && people[i].notEquals(people[j])) {
+                if (i<j  && !people[i].equals(people[j])) {
                     System.out.printf(" %d пользователь не совпадает с %d пользователем \n", i+1,j+1);
                     number++;
                 }
