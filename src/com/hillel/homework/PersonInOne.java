@@ -3,6 +3,7 @@ package com.hillel.homework;
 import com.hillel.classwork.lesson3.bird.Bird;
 
 import java.util.Objects;
+import java.util.Scanner;
 
 public class PersonInOne {
     private String firstName;
@@ -132,33 +133,15 @@ public class PersonInOne {
             System.out.println(people[2] + " не совпадает с " + people[4]);
         }
 
-        /*Дальше я просто экспериментировала**/
-        System.out.println("\nНачало экспериментов");
-        Bird bird = new Bird("red");
-        System.out.println(bird.equals(people[1]));
-        System.out.println(!people[1].equals(bird));
-
-        System.out.println("Совпадают:");
-        int count = 0;
-        for (int i = 0; i < people.length; i++) {
-            for (int j = 0; j < people.length; j++) {
-                if (i < j && people[i].equals(people[j])) {
-                    System.out.printf(" %d пользователь совпадает с %d пользователем \n", i + 1, j + 1);
-                    count++;
-                }
-            }
-        }
-        System.out.println("Количество совпадений: " + count);
-        System.out.println("Не совпадают:");
-        int number = 0;
-        for (int i = 0; i < people.length; i++) {
-            for (int j = 0; j < people.length; j++) {
-                if (i < j && !people[i].equals(people[j])) {
-                    System.out.printf(" %d пользователь не совпадает с %d пользователем \n", i + 1, j + 1);
-                    number++;
-                }
-            }
-        }
-        System.out.println(" Количество несовпадений: " + number);
+        /**System.out.println("Введите номера пользователей,которых хотите сравнить(от 1 до 5)");
+        Scanner scanner = new Scanner(System.in);
+        int n1 = scanner.nextInt();
+        int n2 = scanner.nextInt();
+        System.out.printf("Сравнение %d и %d пользователей:\n", n1, n2);
+        if (people[n1 - 1].equals(people[n2 - 1])) {
+            System.out.println(people[n1 - 1] + " совпадает с " + people[n2 - 1]);
+        } else {
+            System.out.println(people[n1 - 1] + " не совпадает с " + people[n2 - 1]);
+        }**/
     }
 }
