@@ -31,8 +31,6 @@ public class PersonMain {
             System.out.println(people[2] + " не совпадает с " + people[4]);
         }
 
-
-
         /*Дальше я просто экспериментировала**/
         System.out.println("\nНачало экспериментов");
         Bird bird = new Bird("red");
@@ -50,7 +48,6 @@ public class PersonMain {
             }
         }
         System.out.println("Количество совпадений: " + count);
-
         System.out.println("Не совпадают:");
         int number = 0;
         for (int i = 0; i < people.length; i++) {

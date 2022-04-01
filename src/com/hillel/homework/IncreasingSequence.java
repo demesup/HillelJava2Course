@@ -7,10 +7,7 @@ public class IncreasingSequence {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-
         System.out.println("Введите количество чисел ");
-
-
         int length = scanner.nextInt();
 
         if (length > 1) {
@@ -19,10 +16,7 @@ public class IncreasingSequence {
                 System.out.printf("Введите %d число \n ", i + 1);
                 array[i] = scanner.nextInt();
             }
-
             System.out.println(Arrays.toString(array));
-
-
             if (increasingSequence(array)) {
                 System.out.println("Массив является возрастающей последовательностью");
             } else {
@@ -31,8 +25,6 @@ public class IncreasingSequence {
         } else {
             System.out.println("Для последовательности нужно больше 2 чисел");
         }
-
-
     }
 
     public static boolean increasingSequence(int[] array) {
