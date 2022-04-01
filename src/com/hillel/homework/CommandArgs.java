@@ -3,8 +3,8 @@ package com.hillel.homework;
 public class CommandArgs {
 
     public static void main(String[] args) {
-        for (int i = 0; i < args.length; i++) {
-            System.out.println(args[i]);
+        for (String arg : args) {
+            System.out.println(arg);
         }
 
         if (args[1].charAt(0) == '*' | args[1].charAt(0) == '/' | args[1].charAt(0) == '+' | args[1].charAt(0) == '-') {
@@ -18,7 +18,6 @@ public class CommandArgs {
 
     public static int action(int x, char act, int y) {
         switch (act) {
-
             case '-':
                 return x - y;
             case '+':
