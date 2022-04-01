@@ -35,7 +35,7 @@ public class PersonMain {
 
         /*Дальше я просто экспериментировала**/
         System.out.println("\nНачало экспериментов");
-        Bird bird= new Bird("red");
+        Bird bird = new Bird("red");
         System.out.println(bird.equals(people[1]));
         System.out.println(!people[1].equals(bird));
 
@@ -44,7 +44,7 @@ public class PersonMain {
         for (int i = 0; i < people.length; i++) {
             for (int j = 0; j < people.length; j++) {
                 if (i < j && people[i].equals(people[j])) {
-                    System.out.printf(" %d пользователь совпадает с %d пользователем \n", i+1,j+1);
+                    System.out.printf(" %d пользователь совпадает с %d пользователем \n", i + 1, j + 1);
                     count++;
                 }
             }
@@ -55,8 +55,8 @@ public class PersonMain {
         int number = 0;
         for (int i = 0; i < people.length; i++) {
             for (int j = 0; j < people.length; j++) {
-                if (i<j  && !people[i].equals(people[j])) {
-                    System.out.printf(" %d пользователь не совпадает с %d пользователем \n", i+1,j+1);
+                if (i < j && !people[i].equals(people[j])) {
+                    System.out.printf(" %d пользователь не совпадает с %d пользователем \n", i + 1, j + 1);
                     number++;
                 }
             }

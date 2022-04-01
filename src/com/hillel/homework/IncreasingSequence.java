@@ -16,7 +16,7 @@ public class IncreasingSequence {
         if (length > 1) {
             int[] array = new int[length];
             for (int i = 0; i < array.length; i++) {
-                System.out.printf("Введите %d число \n ", i);
+                System.out.printf("Введите %d число \n ", i + 1);
                 array[i] = scanner.nextInt();
             }
 
@@ -33,9 +33,9 @@ public class IncreasingSequence {
         }
 
 
-
     }
-    public static boolean increasingSequence ( int[] array){
+
+    public static boolean increasingSequence(int[] array) {
 
         for (int i = 1; i < array.length; i++) {
             if (array[i] <= array[i - 1]) {
