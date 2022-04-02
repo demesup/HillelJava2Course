@@ -1,4 +1,4 @@
-package com.hillel.homework;
+package com.hillel.homework.hw2;
 
 import java.util.Scanner;
 

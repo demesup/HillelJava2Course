@@ -1,4 +1,4 @@
-package com.hillel.homework;
+package com.hillel.homework.person;
 
 import java.util.Objects;
 
