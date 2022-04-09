@@ -5,9 +5,8 @@ import java.util.Scanner;
 public class StaticHelpers {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Helpers helpers = new Helpers();
-        Helpers.DistanceHelper distanceHelper = helpers.new DistanceHelper();
-        Helpers.MathHelper mathHelper = helpers.new MathHelper();
+        Helpers.DistanceHelper distanceHelper = new Helpers.DistanceHelper();
+        Helpers.MathHelper mathHelper = new Helpers.MathHelper();
 
         System.out.println("Введите координаты (x,y) точки А (в формате int): ");
         int x1 = scanner.nextInt(), y1 = scanner.nextInt();

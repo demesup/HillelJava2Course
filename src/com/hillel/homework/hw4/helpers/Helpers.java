@@ -2,15 +2,15 @@ package com.hillel.homework.hw4.helpers;
 
 public class Helpers {
 
-    public class DistanceHelper {
+    public static class DistanceHelper {
         public double calculateDistance(int x1, int y1, int x2, int y2) {
             if (x1 == x2 && y1 == y2) return 0;
             return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
         }
     }
 
-    public class MathHelper {
-        public double operation(char o, int a, int b) {
+    public static class MathHelper {
+        public static double operation(char o, int a, int b) {
             switch (o) {
                 case ('с'):
                 case ('s'):
@@ -39,19 +39,19 @@ public class Helpers {
             }
         }
 
-        public int sum(int a, int b) {
+        public static int sum(int a, int b) {
             return a + b;
         }
 
-        public int difference(int a, int b) {
+        public static int difference(int a, int b) {
             return a - b;
         }
 
-        public int multiplication(int a, int b) {
+        public static int multiplication(int a, int b) {
             return a * b;
         }
 
-        public double division(int a, int b) {
+        public static double division(int a, int b) {
             if (a % b == 0) return a / b;
             double remainder = a % b * 10;
             return a / b + remainder / b / 10;
