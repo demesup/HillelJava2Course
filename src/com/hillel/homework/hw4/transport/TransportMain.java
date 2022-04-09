@@ -4,18 +4,20 @@ public class TransportMain {
     public static void main(String[] args) {
         Train train = new Train(69, 140, "2022/10/05 23:30", "2022/11/05 10:30",
                 "Kiev", "Odessa", 0, true, true, 15);
+        train.loading();
         train.moving();
         train.accelerate();
         train.hum();
         train.rails();
         train.slowingDown();
         train.stopping();
+        train.unloading();
         System.out.println();
 
         //анн 22
         Airplane airplane = new Airplane(50, 650, 800, "2022/10/05 23:30", "2022/11/05 01:00",
                 "Kiev", "Odessa", 0, true, true);
-
+        airplane.loading();
         airplane.moving();
         airplane.accelerate();
         airplane.takeOff();
@@ -23,6 +25,7 @@ public class TransportMain {
         airplane.landing();
         airplane.slowingDown();
         airplane.stopping();
+        airplane.unloading();
         System.out.println();
 
         System.out.println(train);

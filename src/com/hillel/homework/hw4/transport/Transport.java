@@ -25,6 +25,14 @@ public class Transport {
         System.out.println("The transport is stopping...");
     }
 
+    public void loading(){
+        System.out.println("The cargo is being loaded...");
+    }
+
+    public void unloading(){
+        System.out.println("The cargo is being unloaded...");
+    }
+
     public int getCustoms() {
         return customs;
     }
