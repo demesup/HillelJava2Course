@@ -17,7 +17,6 @@ public class Transport {
         System.out.println("The transport is slowing down...");
     }
 
-
     public void moving() {
         System.out.println("The transport is starting moving...");
     }
@@ -25,7 +24,6 @@ public class Transport {
     public void stopping() {
         System.out.println("The transport is stopping...");
     }
-
 
     public int getCustoms() {
         return customs;

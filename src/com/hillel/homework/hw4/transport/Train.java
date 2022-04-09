@@ -39,8 +39,6 @@ public class Train extends Transport {
         return "Make sure there are railways and depot";
     }
 
-
-
     public void hum() {
         System.out.println("The train is humming...");
     }
@@ -48,7 +46,6 @@ public class Train extends Transport {
     public void rails() {
         System.out.println("The train is changing rails...");
     }
-
 
     public long getCargoWeight() {
         return this.getCapacity() * wagons;
