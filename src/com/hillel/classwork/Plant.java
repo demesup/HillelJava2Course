@@ -4,6 +4,20 @@ public class Plant {
     private int height;
     private String family;
 
+    public Plant(int height, String family){
+        this.height = height;
+        this.family = family;
+        System.out.println("Create plant");
+    }
+
+    @Override
+    public String toString() {
+        return "Plant{" +
+                "height=" + height +
+                ", family='" + family + '\'' +
+                '}';
+    }
+
     public void photosynthesis(){
         System.out.println("The plant photosynthesize");
     }

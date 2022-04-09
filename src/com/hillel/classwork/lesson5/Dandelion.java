@@ -4,4 +4,8 @@ import com.hillel.classwork.Plant;
 
 public class Dandelion extends Plant {
 
+    public Dandelion(int height) {
+        super(height, "Asteraceae");
+        System.out.println("Create dandelion");
+    }
 }

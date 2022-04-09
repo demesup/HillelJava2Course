@@ -9,13 +9,7 @@ public class Train extends Transport {
 
     public Train(long capacity, long speed, String departure, String arrival, String origin, String destination,
                  int customs, boolean railways, boolean depot, int wagons) {
-        setCapacity(capacity);
-        setSpeed(speed);
-        setDeparture(departure);
-        setArrival(arrival);
-        setOrigin(origin);
-        setDestination(destination);
-        setCustoms(customs);
+        super(capacity, speed, departure, arrival, origin, destination, customs);
         this.railways = railways;
         this.depot = depot;
         this.wagons = wagons;

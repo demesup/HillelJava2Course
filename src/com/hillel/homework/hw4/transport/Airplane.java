@@ -7,13 +7,7 @@ public class Airplane extends Transport {
 
     public Airplane(long capacity, int space, long speed, String departure, String arrival, String origin, String destination,
                     int customs, boolean airport, boolean airstrip) {
-        setCapacity(capacity);
-        setSpeed(speed);
-        setDeparture(departure);
-        setArrival(arrival);
-        setOrigin(origin);
-        setDestination(destination);
-        setCustoms(customs);
+        super(capacity, speed, departure, arrival, origin, destination, customs);
         this.airport = airport;
         this.airstrip = airstrip;
         this.space = space;

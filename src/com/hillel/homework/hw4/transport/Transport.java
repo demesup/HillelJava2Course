@@ -9,6 +9,16 @@ public class Transport {
     private String destination;
     private int customs; //таможня
 
+    public Transport(long capacity, long speed, String departure, String arrival, String origin, String destination, int customs) {
+        this.capacity = capacity;
+        this.speed = speed;
+        this.departure = departure;
+        this.arrival = arrival;
+        this.origin = origin;
+        this.destination = destination;
+        this.customs = customs;
+    }
+
     public void accelerate() {
         System.out.println("The transport is picking up speed...");
     }
@@ -25,11 +35,11 @@ public class Transport {
         System.out.println("The transport is stopping...");
     }
 
-    public void loading(){
+    public void loading() {
         System.out.println("The cargo is being loaded...");
     }
 
-    public void unloading(){
+    public void unloading() {
         System.out.println("The cargo is being unloaded...");
     }
 
