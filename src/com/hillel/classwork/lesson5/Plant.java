@@ -19,7 +19,7 @@ public class Plant {
     }
 
     public void photosynthesis(){
-        System.out.println("The plant photosynthesize");
+        System.out.println("The plant photosynthesize " + this);
     }
 
     public int getHeight() {

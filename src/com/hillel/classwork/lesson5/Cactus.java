@@ -5,6 +5,7 @@ import com.hillel.classwork.Plant;
 public class Cactus extends Plant {
 
     public Cactus(int height) {
-        super(height, family);
+        super(height, "Cactaceae");
+        System.out.println("Create cactus");
     }
 }

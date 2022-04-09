@@ -17,7 +17,6 @@ public class Train extends Transport {
 
     @Override
     public String toString() {
-
         if (railways && depot) {
             return "Train: " +
                     "speed: " + getSpeed() +
@@ -72,5 +71,6 @@ public class Train extends Transport {
     public void setDepot(boolean depot) {
         this.depot = depot;
     }
+
 
 }
