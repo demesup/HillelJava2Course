@@ -40,22 +40,6 @@ public class Train extends Transport {
     }
 
 
-    public void accelerate() {
-        System.out.println("The train is picking up speed...");
-    }
-
-    public void slowingDown() {
-        System.out.println("The train is slowing down...");
-    }
-
-
-    public void moving() {
-        System.out.println("The train is starting moving...");
-    }
-
-    public void stopping() {
-        System.out.println("The train is stopping...");
-    }
 
     public void hum() {
         System.out.println("The train is humming...");

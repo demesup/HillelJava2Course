@@ -9,6 +9,23 @@ public class Transport {
     private String destination;
     private int customs; //таможня
 
+    public void accelerate() {
+        System.out.println("The transport is picking up speed...");
+    }
+
+    public void slowingDown() {
+        System.out.println("The transport is slowing down...");
+    }
+
+
+    public void moving() {
+        System.out.println("The transport is starting moving...");
+    }
+
+    public void stopping() {
+        System.out.println("The transport is stopping...");
+    }
+
 
     public int getCustoms() {
         return customs;

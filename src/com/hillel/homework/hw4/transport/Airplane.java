@@ -3,8 +3,9 @@ package com.hillel.homework.hw4.transport;
 public class Airplane extends Transport {
     public boolean airport;
     public boolean airstrip;
+    public int space;
 
-    public Airplane(long capacity, long speed, String departure, String arrival, String origin, String destination,
+    public Airplane(long capacity, int space, long speed, String departure, String arrival, String origin, String destination,
                     int customs, boolean airport, boolean airstrip) {
         setCapacity(capacity);
         setSpeed(speed);
@@ -15,6 +16,7 @@ public class Airplane extends Transport {
         setCustoms(customs);
         this.airport = airport;
         this.airstrip = airstrip;
+        this.space = space;
     }
 
     @Override
@@ -27,36 +29,31 @@ public class Airplane extends Transport {
                     "\n\t origin: " + getOrigin() +
                     "\n\t destination: " + getDestination() +
                     "\n\t customs: " + getCustoms() +
-                    "\n\t max capacity: " + getCapacity() + " tons";
+                    "\n\t max capacity: " + getCapacity() +
+                    " tons\n\t space: " + getSpace() + " m³ ";
         }
         return "Make sure there are airport and airstrip";
     }
 
-    public void accelerate() {
-        System.out.println("The plane is picking up speed...");
-    }
-
-    public void slowingDown() {
-        System.out.println("The plane is slowing down...");
-    }
-
-    public void moving() {
-        System.out.println("The plane is starting moving...");
-    }
-
-    public void stopping() {
-        System.out.println("The plane is stopping...");
-    }
 
     public void takeOff() {
         System.out.println("The plane is taking off...");
     }
-    public void fly(){
+
+    public void fly() {
         System.out.println("The plane is flying...");
     }
 
     public void landing() {
         System.out.println("The plane is landing...");
+    }
+
+    public int getSpace() {
+        return space;
+    }
+
+    public void setSpace(int space) {
+        this.space = space;
     }
 
     public boolean isAirport() {
