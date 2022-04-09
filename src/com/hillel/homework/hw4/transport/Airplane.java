@@ -13,22 +13,30 @@ public class Airplane extends Transport {
         this.space = space;
     }
 
+
     @Override
     public String toString() {
         if (airport && airstrip) {
             return "Airplane: " +
-                    "speed: " + getSpeed() +
-                    "km/h \n\t departure:" + getDeparture() +
-                    "\n\t arrival: " + getArrival() +
-                    "\n\t origin: " + getOrigin() +
-                    "\n\t destination: " + getDestination() +
-                    "\n\t customs: " + getCustoms() +
-                    "\n\t max capacity: " + getCapacity() +
-                    " tons\n\t space: " + getSpace() + " m³ ";
+                    "speed: " + speed +
+                    "km/h \n\t departure:" + departure +
+                    "\n\t arrival: " + arrival +
+                    "\n\t origin: " + origin +
+                    "\n\t destination: " + destination +
+                    "\n\t customs: " + customs +
+                    "\n\t max capacity: " + capacity +
+                    " tons\n\t space: " + space + " m³ ";
         }
         return "Make sure there are airport and airstrip";
     }
 
+    public void way() {
+        firstHalfWay();
+        takeOff();
+        fly();
+        landing();
+        secondHalfWay();
+    }
 
     public void takeOff() {
         System.out.println("The plane is taking off...");

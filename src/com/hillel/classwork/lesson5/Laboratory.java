@@ -1,6 +1,6 @@
 package com.hillel.classwork.lesson5;
 
-import com.hillel.classwork.Plant;
+import com.hillel.classwork.lesson5.Plant;
 
 import java.util.ArrayList;
 import java.util.List;

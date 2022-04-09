@@ -1,13 +1,13 @@
 package com.hillel.homework.hw4.transport;
 
 public class Transport {
-    private long capacity;
-    private long speed;
-    private String departure;
-    private String arrival;
-    private String origin;
-    private String destination;
-    private int customs; //таможня
+    protected long capacity;
+    protected long speed;
+    protected String departure;
+    protected String arrival;
+    protected String origin;
+    protected String destination;
+    protected int customs; //таможня
 
     public Transport(long capacity, long speed, String departure, String arrival, String origin, String destination, int customs) {
         this.capacity = capacity;
@@ -43,7 +43,30 @@ public class Transport {
         System.out.println("The cargo is being unloaded...");
     }
 
+    @Override
+    public String toString() {
+        return "Transport{" +
+                "capacity=" + capacity +
+                ", speed=" + speed +
+                ", departure='" + departure + '\'' +
+                ", arrival='" + arrival + '\'' +
+                ", origin='" + origin + '\'' +
+                ", destination='" + destination + '\'' +
+                ", customs=" + customs +
+                '}';
+    }
 
+    public void firstHalfWay(){
+        loading();
+        moving();
+        accelerate();
+    }
+
+    public void secondHalfWay(){
+        slowingDown();
+        stopping();
+        unloading();
+    }
 
     public int getCustoms() {
         return customs;

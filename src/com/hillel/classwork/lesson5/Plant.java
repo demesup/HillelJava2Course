@@ -1,8 +1,8 @@
-package com.hillel.classwork;
+package com.hillel.classwork.lesson5;
 
 public class Plant {
-    private int height;
-    private String family;
+    protected int height;
+    protected String family;
 
     public Plant(int height, String family){
         this.height = height;
