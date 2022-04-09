@@ -39,6 +39,33 @@ public class Train extends Transport {
         return "Make sure there are railways and depot";
     }
 
+
+    public void accelerate() {
+        System.out.println("The train is picking up speed...");
+    }
+
+    public void slowingDown() {
+        System.out.println("The train is slowing down...");
+    }
+
+
+    public void moving() {
+        System.out.println("The train is starting moving...");
+    }
+
+    public void stopping() {
+        System.out.println("The train is stopping...");
+    }
+
+    public void hum() {
+        System.out.println("The train is humming...");
+    }
+
+    public void rails() {
+        System.out.println("The train is changing rails...");
+    }
+
+
     public long getCargoWeight() {
         return this.getCapacity() * wagons;
     }

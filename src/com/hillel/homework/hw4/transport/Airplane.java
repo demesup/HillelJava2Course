@@ -27,9 +27,36 @@ public class Airplane extends Transport {
                     "\n\t origin: " + getOrigin() +
                     "\n\t destination: " + getDestination() +
                     "\n\t customs: " + getCustoms() +
-                    "\n\t max capacity: " + getCapacity() + " tons"  ;
+                    "\n\t max capacity: " + getCapacity() + " tons";
         }
         return "Make sure there are airport and airstrip";
+    }
+
+    public void accelerate() {
+        System.out.println("The plane is picking up speed...");
+    }
+
+    public void slowingDown() {
+        System.out.println("The plane is slowing down...");
+    }
+
+    public void moving() {
+        System.out.println("The plane is starting moving...");
+    }
+
+    public void stopping() {
+        System.out.println("The plane is stopping...");
+    }
+
+    public void takeOff() {
+        System.out.println("The plane is taking off...");
+    }
+    public void fly(){
+        System.out.println("The plane is flying...");
+    }
+
+    public void landing() {
+        System.out.println("The plane is landing...");
     }
 
     public boolean isAirport() {
