@@ -14,6 +14,8 @@ public class TransportMain {
         train.unloading();
         System.out.println();
 
+        train.setOrigin("Kharkov");
+
         //анн 22
         Airplane airplane = new Airplane(50, 650, 800, "2022/10/05 23:30", "2022/11/05 01:00",
                 "Kiev", "Odessa", 0, true, true);
