@@ -31,11 +31,15 @@ public class Airplane extends Transport {
     }
 
     public void way() {
-        firstHalfWay();
+        loading();
+        moving();
+        accelerate();
         takeOff();
         fly();
         landing();
-        secondHalfWay();
+        slowingDown();
+        stopping();
+        unloading();
     }
 
     public void takeOff() {

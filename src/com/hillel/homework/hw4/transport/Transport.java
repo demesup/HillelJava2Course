@@ -56,13 +56,10 @@ public class Transport {
                 '}';
     }
 
-    public void firstHalfWay(){
+    public void way(){
         loading();
         moving();
         accelerate();
-    }
-
-    public void secondHalfWay(){
         slowingDown();
         stopping();
         unloading();

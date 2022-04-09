@@ -34,10 +34,14 @@ public class Train extends Transport {
     }
 
     public void way(){
-        firstHalfWay();
+        loading();
+        moving();
+        accelerate();
         hum();
         rails();
-        secondHalfWay();
+        slowingDown();
+        stopping();
+        unloading();
     }
 
     public void hum() {

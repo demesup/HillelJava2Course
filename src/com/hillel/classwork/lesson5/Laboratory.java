@@ -21,6 +21,11 @@ public class Laboratory {
         Plant cactus = new Cactus(height2);
         plants.add(cactus);
 
+        System.out.println("Orange age: ");
+        int age = scanner.nextInt();
+        Plant orange = new Orange(age);
+        plants.add(orange);
+
         for (Plant plant: plants) {
             plant.photosynthesis();
         }

@@ -11,6 +11,6 @@ public class Dandelion extends Plant {
 
     @Override
     public void photosynthesis() {
-        System.out.println("Dandelion photosynthesis" + this);
+        System.out.println("Dandelion photosynthesis " + this);
     }
 }
