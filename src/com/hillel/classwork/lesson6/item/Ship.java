@@ -1,5 +1,7 @@
 package com.hillel.classwork.lesson6.item;
 
+import com.hillel.Item;
+
 public class Ship extends Item implements Swimmable{
 
     @Override

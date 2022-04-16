@@ -1,16 +1,20 @@
 package com.hillel.homework.hw5;
 
+import java.text.DecimalFormat;
+
 public class PropertyTax {
     protected int s;
-    protected int taxK;
+    protected float taxK;
     protected long propertyTax;
 
-    public PropertyTax(int s, int taxK) {
+    public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#.##");
+
+    public PropertyTax(int s, float taxK) {
         this.s = s;
         this.taxK = taxK;
     }
 
-    public long count() {
+    public float count() {
         return s * taxK;
     }
 
@@ -19,7 +23,7 @@ public class PropertyTax {
         return "PropertyTax{" +
                 "s=" + s +
                 ", taxK=" + taxK +
-                ", propertyTax=" + getPropertyTax() +
+                ", propertyTax=" + count() +
                 '}';
     }
 
@@ -27,11 +31,23 @@ public class PropertyTax {
         return s;
     }
 
-    public int getTaxK() {
+    public void setS(int s) {
+        this.s = s;
+    }
+
+    public float getTaxK() {
         return taxK;
+    }
+
+    public void setTaxK(float taxK) {
+        this.taxK = taxK;
     }
 
     public long getPropertyTax() {
         return propertyTax;
+    }
+
+    public void setPropertyTax(long propertyTax) {
+        this.propertyTax = propertyTax;
     }
 }

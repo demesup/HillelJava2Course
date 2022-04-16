@@ -1,4 +1,4 @@
-package com.hillel.classwork.lesson6.item;
+package com.hillel;
 
 public class Item {
     @Override

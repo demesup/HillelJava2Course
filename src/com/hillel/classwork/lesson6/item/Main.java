@@ -1,6 +1,8 @@
 package com.hillel.classwork.lesson6.item;
 
 
+import com.hillel.Item;
+
 import java.util.*;
 
 public class Main {
@@ -18,12 +20,12 @@ public class Main {
             System.out.println(actionMessage);
         }
 
-        for (Item item:items ) {
-            System.out.println(item);
-            if (item instanceof Flyable) ((Flyable) item).fly();
-            if (item instanceof Runnable) ((Runnable) item).run();
-            if (item instanceof Swimmable) ((Swimmable) item).swim();
-            if (item instanceof Eatable) ((Eatable) item).eat();
+        for (Item propertyTax : items) {
+            System.out.println(propertyTax);
+            if (propertyTax instanceof Flyable) ((Flyable) propertyTax).fly();
+            if (propertyTax instanceof Runnable) ((Runnable) propertyTax).run();
+            if (propertyTax instanceof Swimmable) ((Swimmable) propertyTax).swim();
+            if (propertyTax instanceof Eatable) ((Eatable) propertyTax).eat();
             System.out.println();
         }
     }

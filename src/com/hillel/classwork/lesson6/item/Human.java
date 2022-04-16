@@ -1,5 +1,7 @@
 package com.hillel.classwork.lesson6.item;
 
+import com.hillel.Item;
+
 public class Human extends Item implements Swimmable,Runnable, Flyable,Eatable{
 
     @Override

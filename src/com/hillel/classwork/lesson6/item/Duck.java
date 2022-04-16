@@ -1,5 +1,7 @@
 package com.hillel.classwork.lesson6.item;
 
+import com.hillel.Item;
+
 public class Duck extends Item implements Swimmable,Flyable,Runnable,Eatable  {
 
     private final String name;

@@ -1,5 +1,7 @@
 package com.hillel.classwork.lesson6.item;
 
+import com.hillel.Item;
+
 public class Sheep extends Item implements Runnable,Eatable{
     @Override
     public void run() {
