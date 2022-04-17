@@ -5,13 +5,14 @@ import java.text.DecimalFormat;
 public class PropertyTax {
     protected int s;
     protected float taxK;
-    protected long propertyTax;
+    protected float propertyTax;
+    protected final float incomeWage = 2481;
 
     public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#.##");
 
     public PropertyTax(int s, float taxK) {
         this.s = s;
-        this.taxK = taxK;
+        this.taxK = taxK / 100 * incomeWage;//(% от мин. зарплаты)
     }
 
     public float count() {
@@ -20,11 +21,11 @@ public class PropertyTax {
 
     @Override
     public String toString() {
-        return "PropertyTax{" +
-                "s=" + s +
-                ", taxK=" + taxK +
-                ", propertyTax=" + count() +
-                '}';
+        return "PropertyTax\n . . . . . . . . . . . . . . " +
+                "\n s: " + s +
+                "\n taxK:" + DECIMAL_FORMAT.format(taxK) +
+                "\n propertyTax:" + DECIMAL_FORMAT.format(count()) +
+                "\n_____________________________";
     }
 
     public int getS() {
@@ -43,11 +44,11 @@ public class PropertyTax {
         this.taxK = taxK;
     }
 
-    public long getPropertyTax() {
+    public float getPropertyTax() {
         return propertyTax;
     }
 
-    public void setPropertyTax(long propertyTax) {
+    public void setPropertyTax(float propertyTax) {
         this.propertyTax = propertyTax;
     }
 }

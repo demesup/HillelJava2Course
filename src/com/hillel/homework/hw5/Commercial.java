@@ -18,11 +18,12 @@ public class Commercial extends PropertyTax {
 
     @Override
     public String toString() {
-        return "Commercial" +
+        return "Commercial\n . . . . . . . . . . . . . . " +
                 "\n earnings: " + earnings +
                 "\n space: " + s +
-                "\n\b taxK: " + taxK +
-                "\n propertyTax: " + DECIMAL_FORMAT.format(count());
+                "\n\b taxK: " + DECIMAL_FORMAT.format(taxK) +
+                "\n propertyTax: " + DECIMAL_FORMAT.format(count())+
+                "\n_____________________________";
     }
 
     public int getEarnings() {

@@ -1,11 +1,9 @@
 package com.hillel.homework.hw5;
 
-import java.text.DecimalFormat;
 import java.util.Locale;
 
 public class Residential extends PropertyTax {
     private String type;
-    private float subsidy;
     private final float livingWage = 2481;
     private final int fixedTax = 25_000;
     private int familyIncome;
@@ -16,11 +14,12 @@ public class Residential extends PropertyTax {
         this.type = type.toLowerCase(Locale.ROOT).replaceAll(" ", "");
         this.familyIncome = familyIncome;
         this.residents = residents;
-        this.subsidy = subsidy();
     }
 
     private float subsidy() {
-        return 100-(familyIncome / residents / livingWage / 2 * 15);
+        float subsidy = (float) familyIncome / residents / livingWage / 2 * 15; //Среднемесячный доход на 1 чел / прожиточный минимум / 2 * 15% * 100
+        if (subsidy < 100) return subsidy;
+        return 100;
     }
 
     @Override
@@ -28,15 +27,15 @@ public class Residential extends PropertyTax {
         switch (type) {
             case "flat":
                 if (s > 300) {
-                    return (s - 60) * taxK + fixedTax;
+                    return (s - 60) * taxK * subsidy() / 100 + fixedTax;
                 } else if (s > 60) {
-                    return (s - 60) * taxK * subsidy / 100;
+                    return (s - 60) * taxK * subsidy() / 100;
                 }
             case "house":
                 if (s > 500) {
-                    return (s - 120) * taxK + fixedTax;
+                    return (s - 120) * taxK * subsidy() / 100 + fixedTax;
                 } else if (s > 120) {
-                    return (s - 120) * taxK * subsidy / 100;
+                    return (s - 120) * taxK * subsidy() / 100;
                 }
             default:
                 return 0;
@@ -45,23 +44,17 @@ public class Residential extends PropertyTax {
 
     @Override
     public String toString() {
-        if ((type.equals("flat") && s > 60)||(type.equals("house") && s > 120)){ return "Residential" +
-                "\n space: "  + s +
-                "\n taxK: " + taxK +
+
+        return "Residential\n . . . . . . . . . . . . . . " +
+                "\n space: " + s +
+                "\n taxK: " + DECIMAL_FORMAT.format(taxK) +
                 "\n type: " + type +
                 "\n family income: " + familyIncome +
                 "\n residents: " + residents +
-                "\n subsidy covers: " + DECIMAL_FORMAT.format(subsidy) +
-                "%\n property total tax: " + DECIMAL_FORMAT.format(count() / subsidy() * 100) +
-                "\n property tax considering subsidy: " + DECIMAL_FORMAT.format(count()) ;
-        }
-        return "Residential" +
-                "\n space: "  + s +
-                "\n taxK: " + taxK +
-                "\n type: " + type +
-                "\n family income: " + familyIncome +
-                "\n residents: " + residents +
-                "\n property total tax: " + DECIMAL_FORMAT.format(count() / subsidy() * 100) ;
+                "\n to pay: " + DECIMAL_FORMAT.format(subsidy()) +
+                "%\n property total tax: " + DECIMAL_FORMAT.format(count()) +
+                "\n_____________________________";
+
     }
 
     public String getType() {
@@ -70,14 +63,6 @@ public class Residential extends PropertyTax {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public float getSubsidy() {
-        return subsidy;
-    }
-
-    public void setSubsidy(float subsidy) {
-        this.subsidy = subsidy;
     }
 
     public float getLivingWage() {
