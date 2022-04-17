@@ -15,7 +15,7 @@ public class PropertyTax {
         this.taxK = taxK / 100 * incomeWage;//(% от мин. зарплаты)
     }
 
-    public float count() {
+    protected float count() {
         return s * taxK;
     }
 

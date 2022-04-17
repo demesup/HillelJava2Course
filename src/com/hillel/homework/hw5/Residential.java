@@ -23,7 +23,7 @@ public class Residential extends PropertyTax {
     }
 
     @Override
-    public float count() {
+    protected float count() {
         switch (type) {
             case "flat":
                 if (s > 300) {
@@ -44,7 +44,6 @@ public class Residential extends PropertyTax {
 
     @Override
     public String toString() {
-
         return "Residential\n . . . . . . . . . . . . . . " +
                 "\n space: " + s +
                 "\n taxK: " + DECIMAL_FORMAT.format(taxK) +
@@ -54,7 +53,6 @@ public class Residential extends PropertyTax {
                 "\n to pay: " + DECIMAL_FORMAT.format(subsidy()) +
                 "%\n property total tax: " + DECIMAL_FORMAT.format(count()) +
                 "\n_____________________________";
-
     }
 
     public String getType() {

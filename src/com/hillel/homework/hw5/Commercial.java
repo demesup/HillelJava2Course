@@ -9,7 +9,7 @@ public class Commercial extends PropertyTax {
     }
 
     @Override
-    public float count() {
+    protected float count() {
         if (earnings <= 100) {
             return 0;
         }

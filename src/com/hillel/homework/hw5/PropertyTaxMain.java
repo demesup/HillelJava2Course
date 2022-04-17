@@ -10,21 +10,6 @@ public class PropertyTaxMain {
 
     public static void main(String[] args) {
 
-        System.out.println(new Residential(100, 1, "flat", 1000, 1));
-        System.out.println(new Residential(100, 1, "flat", 100000, 1));
-        System.out.println(new Residential(350, 1, "flat", 1000, 1));
-        System.out.println(new Residential(350, 1, "flat", 100000, 1));
-        System.out.println(new Residential(50, 1, "flat", 1000, 1));
-        System.out.println(new Residential(100, 1, "house", 1000, 1));
-        System.out.println(new Residential(350, 1.5f, "house", 1000, 1));
-        System.out.println(new Residential(150, 1.3f, "house", 1000, 1));
-
-        System.out.println(new Commercial(100, 1000));
-        System.out.println(new Commercial(100, 60));
-
-        System.out.println(new Industrial(100));
-
-
         List<PropertyTax> propertyTaxes = new ArrayList<>();
 
         String actionMessage = "Choose action: 1.create object. 2. press any key to exit";
