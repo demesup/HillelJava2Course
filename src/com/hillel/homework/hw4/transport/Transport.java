@@ -19,27 +19,27 @@ public class Transport {
         this.customs = customs;
     }
 
-    public void accelerate() {
+    protected void accelerate() {
         System.out.println("The transport is picking up speed...");
     }
 
-    public void slowingDown() {
+    protected void slowingDown() {
         System.out.println("The transport is slowing down...");
     }
 
-    public void moving() {
+    protected void moving() {
         System.out.println("The transport is starting moving...");
     }
 
-    public void stopping() {
+    protected void stopping() {
         System.out.println("The transport is stopping...");
     }
 
-    public void loading() {
+    protected void loading() {
         System.out.println("The cargo is being loaded...");
     }
 
-    public void unloading() {
+    protected void unloading() {
         System.out.println("The cargo is being unloaded...");
     }
 

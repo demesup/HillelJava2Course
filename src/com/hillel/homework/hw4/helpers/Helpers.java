@@ -10,7 +10,7 @@ public class Helpers {
     }
 
     public static class MathHelper {
-        public static double operation(char o, int a, int b) {
+        public static float operation(char o, int a, int b) {
             switch (o) {
                 case ('с'):
                 case ('s'):
@@ -43,18 +43,17 @@ public class Helpers {
             return a + b;
         }
 
-        public static int difference(int a, int b) {
+        private static int difference(int a, int b) {
             return a - b;
         }
 
-        public static int multiplication(int a, int b) {
+        private static int multiplication(int a, int b) {
             return a * b;
         }
 
-        public static double division(int a, int b) {
-            if (a % b == 0) return a / b;
-            double remainder = a % b * 10;
-            return a / b + remainder / b / 10;
+        private static float division(int a, int b) {
+
+            return (float) a / b;
         }
     }
 }

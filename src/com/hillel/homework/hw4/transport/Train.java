@@ -44,15 +44,15 @@ public class Train extends Transport {
         unloading();
     }
 
-    public void hum() {
+    private void hum() {
         System.out.println("The train is humming...");
     }
 
-    public void rails() {
+    private void rails() {
         System.out.println("The train is changing rails...");
     }
 
-    public long getCargoWeight() {
+    private long getCargoWeight() {
         return this.getCapacity() * wagons;
     }
 

@@ -42,15 +42,15 @@ public class Airplane extends Transport {
         unloading();
     }
 
-    public void takeOff() {
+    private void takeOff() {
         System.out.println("The plane is taking off...");
     }
 
-    public void fly() {
+    private void fly() {
         System.out.println("The plane is flying...");
     }
 
-    public void landing() {
+    private void landing() {
         System.out.println("The plane is landing...");
     }
 
