@@ -1,4 +1,4 @@
-package com.hillel.homework.temperature;
+package com.hillel.homework.hw6.temperature;
 
 public class Fahrenheit implements Converter{
     @Override

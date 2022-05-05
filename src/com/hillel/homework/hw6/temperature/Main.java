@@ -1,6 +1,5 @@
-package com.hillel.homework.temperature;
+package com.hillel.homework.hw6.temperature;
 
-import com.hillel.Item;
 import com.hillel.classwork.lesson6.item.*;
 import com.hillel.classwork.lesson6.item.Runnable;
 
