@@ -27,15 +27,18 @@ public class Main {
                 System.out.println("--------------------------------");
                 System.out.println(converter);
             }
-        } else System.out.println("There were no converting");
 
-        if (converters.size() != 0) {
-            System.out.println("\n\tConverting history 2");
+
+            System.out.println("\n\tBonus");
             for (Converter converter : converters) {
-                System.out.println("--------------------------------");
+                if (converter instanceof Celsius) System.out.println("Celsius = " + ((Celsius) converter).getStart());
+                if (converter instanceof Kelvin) System.out.println("Kelvin = " + ((Kelvin) converter).getStart());
+                if (converter instanceof Fahrenheit)
+                    System.out.println("Fahrenheit = " + ((Fahrenheit) converter).getStart());
                 if (converter instanceof ToCelsius) ((ToCelsius) converter).toCelsius();
                 if (converter instanceof ToKelvin) ((ToKelvin) converter).toKelvin();
                 if (converter instanceof ToFahrenheit) ((ToFahrenheit) converter).toFahrenheit();
+                System.out.println("--------------------------------");
             }
         } else System.out.println("There were no converting");
     }
@@ -48,28 +51,43 @@ public class Main {
             return null;
         }
         System.out.println("Input first degree amount");
-        float start = Float.parseFloat(SCANNER.nextLine());
-        System.out.println("Input second degree type: celsius, fahrenheit, kelvin");
-        String toType = SCANNER.nextLine().toLowerCase(Locale.ROOT).replaceAll(" ", "");
-        if (!toType.equals("celsius") && !toType.equals("fahrenheit") && !toType.equals("kelvin")) {
-            System.out.println("Incorrect degree type " + toType + ". Try again");
-            return null;
-        }
-        if (fromType.equals(toType)) {
-            System.out.println("Types are same");
-            return null;
-        }
-        switch (fromType) {
-            case "celsius":
-                return new Celsius(start, toType);
-            case "fahrenheit":
-                return new Fahrenheit(start, toType);
-            case "kelvin":
-                return new Kelvin(start, toType);
-            default:
+        String number = SCANNER.nextLine();
+        if (isFloat(number)) {
+            float start = Float.parseFloat(number);
+            System.out.println("Input second degree type: celsius, fahrenheit, kelvin");
+            String toType = SCANNER.nextLine().toLowerCase(Locale.ROOT).replaceAll(" ", "");
+            if (!toType.equals("celsius") && !toType.equals("fahrenheit") && !toType.equals("kelvin")) {
                 System.out.println("Incorrect degree type " + toType + ". Try again");
                 return null;
+            }
+            if (fromType.equals(toType)) {
+                System.out.println("Types are same. Try again");
+                return null;
+            }
+            switch (fromType) {
+                case "celsius":
+                    return new Celsius(start, toType);
+                case "fahrenheit":
+                    return new Fahrenheit(start, toType);
+                case "kelvin":
+                    return new Kelvin(start, toType);
+                default:
+                    System.out.println("Incorrect degree type " + toType + ". Try again");
+                    return null;
+            }
         }
+        System.out.println("Incorrect number, try again.");
+        return null;
+    }
+
+    public static boolean isFloat(String start) {
+        if (start == null) return false;
+        try {
+            Float.parseFloat(start);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 }
 
