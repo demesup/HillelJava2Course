@@ -1,6 +1,6 @@
 package com.hillel.homework.hw6.bodyGuard;
 
-public class KarateGuy extends BodyGuard implements Capturable, Kickable, PainHoldable,Throwable{
+public class KarateGuy extends BodyGuard implements Capturable, Kickable, PainHoldable, Throwable {
 
     public KarateGuy(boolean gun) {
         super(gun);

@@ -1,8 +1,5 @@
 package com.hillel.homework.hw6.temperature;
 
-import com.hillel.classwork.lesson6.item.*;
-import com.hillel.classwork.lesson6.item.Runnable;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -15,37 +12,64 @@ public class Main {
 
         List<Converter> converters = new ArrayList<>();
 
-        String actionMessage = "Choose action: 1.create object. 2. press any key to exit";
+        String actionMessage = "Choose action: 1.convert temperature. 2. press any key to exit";
         System.out.println(actionMessage);
-        while (SCANNER.nextLine().toLowerCase(Locale.ROOT).replaceAll(" ", "").equals("create")) {
+        while (SCANNER.nextLine().toLowerCase(Locale.ROOT).replaceAll(" ", "").equals("convert")) {
             Converter converter = create();
             if (converter != null) converters.add(converter);
             System.out.println(actionMessage);
         }
 
-        for (Converter converter : converters) {
-            System.out.println(converter);
-            if (converter instanceof Flyable) ((Flyable) converter).fly();
-            if (converter instanceof Runnable) ((Runnable) converter).run();
-            if (converter instanceof Swimmable) ((Swimmable) converter).swim();
-            if (converter instanceof Eatable) ((Eatable) converter).eat();
-            System.out.println();
-        }
+
+        if (converters.size() != 0) {
+            System.out.println("\tConverting history:");
+            for (Converter converter : converters) {
+                System.out.println("--------------------------------");
+                System.out.println(converter);
+            }
+        } else System.out.println("There were no converting");
+
+        if (converters.size() != 0) {
+            System.out.println("\n\tConverting history 2");
+            for (Converter converter : converters) {
+                System.out.println("--------------------------------");
+                if (converter instanceof ToCelsius) ((ToCelsius) converter).toCelsius();
+                if (converter instanceof ToKelvin) ((ToKelvin) converter).toKelvin();
+                if (converter instanceof ToFahrenheit) ((ToFahrenheit) converter).toFahrenheit();
+            }
+        } else System.out.println("There were no converting");
     }
 
     public static Converter create() {
-        System.out.println("Input degree type: celsius, fahrenheit, kelvin");
-        String objectType = SCANNER.nextLine();
-        switch (objectType.toLowerCase(Locale.ROOT).replaceAll(" ", "")) {
+        System.out.println("Input first degree type: celsius, fahrenheit, kelvin");
+        String fromType = SCANNER.nextLine().toLowerCase(Locale.ROOT).replaceAll(" ", "");
+        if (!fromType.equals("celsius") && !fromType.equals("fahrenheit") && !fromType.equals("kelvin")) {
+            System.out.println("Incorrect degree type " + fromType + ". Try again");
+            return null;
+        }
+        System.out.println("Input first degree amount");
+        float start = Float.parseFloat(SCANNER.nextLine());
+        System.out.println("Input second degree type: celsius, fahrenheit, kelvin");
+        String toType = SCANNER.nextLine().toLowerCase(Locale.ROOT).replaceAll(" ", "");
+        if (!toType.equals("celsius") && !toType.equals("fahrenheit") && !toType.equals("kelvin")) {
+            System.out.println("Incorrect degree type " + toType + ". Try again");
+            return null;
+        }
+        if (fromType.equals(toType)) {
+            System.out.println("Types are same");
+            return null;
+        }
+        switch (fromType) {
             case "celsius":
-                return new Celsius();
+                return new Celsius(start, toType);
             case "fahrenheit":
-                return new Fahrenheit();
+                return new Fahrenheit(start, toType);
             case "kelvin":
-                return new Kelvin();
+                return new Kelvin(start, toType);
             default:
-                System.out.println("Incorrect degree type " + objectType + ". Try again");
+                System.out.println("Incorrect degree type " + toType + ". Try again");
                 return null;
         }
     }
 }
+
