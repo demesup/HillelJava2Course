@@ -26,11 +26,11 @@ public class Main {
             for (Converter converter : converters) {
                 System.out.println("--------------------------------");
                 if (converter instanceof Celsius)
-                    System.out.println("Celsius temperature = " + ((Celsius) converter).getStart());
+                    System.out.println("Celsius temperature = " + ((Celsius) converter).getStart() + "C");
                 if (converter instanceof Kelvin)
-                    System.out.println("Kelvin temperature = " + ((Kelvin) converter).getStart());
+                    System.out.println("Kelvin temperature = " + ((Kelvin) converter).getStart() + "K");
                 if (converter instanceof Fahrenheit)
-                    System.out.println("Fahrenheit temperature = " + ((Fahrenheit) converter).getStart());
+                    System.out.println("Fahrenheit temperature = " + ((Fahrenheit) converter).getStart() + "F");
                 System.out.printf("Converted temperature to %s = %.2f \n", ((Temperature) converter).getToType(), converter.convert());
             }
 
