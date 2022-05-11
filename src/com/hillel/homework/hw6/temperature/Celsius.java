@@ -7,33 +7,34 @@ public class Celsius extends Temperature implements ToKelvin, ToFahrenheit {
     }
 
     @Override
-    public void toFahrenheit() {
-        System.out.println("In Fahrenheit temperature = " + DECIMAL_FORMAT.format(start * 9 / 5 + 32) + "F");
+    public float toFahrenheit() {
+        return start * 9 / 5 + 32;
     }
 
     @Override
-    public void toKelvin() {
-        System.out.println("In Kelvin temperature = " + DECIMAL_FORMAT.format(start + 273.15f) + "K");
+    public float toKelvin() {
+        return start + 273.15f;
     }
 
 
     @Override
-    public void convert() {
+    public float convert() {
         switch (toType) {
             case "fahrenheit":
-                toFahrenheit();
-                break;
+                return toFahrenheit();
             case "kelvin":
-                toKelvin();
-                break;
+                return toKelvin();
             default:
                 System.out.println("Error...");
+                return 0;
         }
     }
 
     @Override
     public String toString() {
-        convert();
-        return "Celsius temperature was " + start + "C" ;
+        return "Celsius temperature is " + start + "C\n" +
+                "Fahrenheit temperature = " + DECIMAL_FORMAT.format(toFahrenheit()) + "F\n" +
+                "Kelvin temperature = " + DECIMAL_FORMAT.format(toKelvin()) + "K\n";
+
     }
 }

@@ -2,11 +2,11 @@ package com.hillel.homework.hw6.temperature;
 
 import java.text.DecimalFormat;
 
-public class Temperature implements Converter{
+public class Temperature implements Converter {
     protected float start;
     protected String toType;
 
-    public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#.##");
+    protected static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#.##");
 
     public Temperature(float start, String toType) {
         this.start = start;
@@ -37,7 +37,7 @@ public class Temperature implements Converter{
     }
 
     @Override
-    public void convert() {
-        System.out.println("Converting...");
+    public float convert() {
+        return 0;
     }
 }

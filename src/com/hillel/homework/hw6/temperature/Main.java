@@ -25,19 +25,19 @@ public class Main {
             System.out.println("\tConverting history:");
             for (Converter converter : converters) {
                 System.out.println("--------------------------------");
-                System.out.println(converter);
+                if (converter instanceof Celsius)
+                    System.out.println("Celsius temperature = " + ((Celsius) converter).getStart());
+                if (converter instanceof Kelvin)
+                    System.out.println("Kelvin temperature = " + ((Kelvin) converter).getStart());
+                if (converter instanceof Fahrenheit)
+                    System.out.println("Fahrenheit temperature = " + ((Fahrenheit) converter).getStart());
+                System.out.printf("Converted temperature to %s = %.2f \n", ((Temperature) converter).getToType(), converter.convert());
             }
 
 
             System.out.println("\n\tBonus");
             for (Converter converter : converters) {
-                if (converter instanceof Celsius) System.out.println("Celsius = " + ((Celsius) converter).getStart());
-                if (converter instanceof Kelvin) System.out.println("Kelvin = " + ((Kelvin) converter).getStart());
-                if (converter instanceof Fahrenheit)
-                    System.out.println("Fahrenheit = " + ((Fahrenheit) converter).getStart());
-                if (converter instanceof ToCelsius) ((ToCelsius) converter).toCelsius();
-                if (converter instanceof ToKelvin) ((ToKelvin) converter).toKelvin();
-                if (converter instanceof ToFahrenheit) ((ToFahrenheit) converter).toFahrenheit();
+                System.out.println(converter);
                 System.out.println("--------------------------------");
             }
         } else System.out.println("There were no converting");
