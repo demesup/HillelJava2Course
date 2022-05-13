@@ -15,12 +15,12 @@ public class Products {
 
     @Override
     public String toString() {
-        return "Products{" +
+        return "Product{" +
                 "name='" + name + '\'' +
                 ", amount=" + amount +
                 ", weight=" + weight +
                 ", price=" + price +
-                '}';
+                "}\n";
     }
 
     public String getName() {
