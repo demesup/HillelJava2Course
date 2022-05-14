@@ -1,4 +1,4 @@
-package com.hillel.homework.hw7;
+package com.hillel.homework.hw7.warehouse;
 
 import java.util.*;
 
