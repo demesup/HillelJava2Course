@@ -1,4 +1,4 @@
-package com.hillel.classwork.lesson9;
+package com.hillel.classwork.lesson9.bird;
 
 public class Bird {
     private String color;

@@ -1,4 +1,4 @@
-package com.hillel.classwork.lesson9;
+package com.hillel.classwork.lesson9.person;
 
 public class Person implements Comparable<Person>{
     private String name;
