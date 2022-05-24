@@ -1,4 +1,4 @@
-package com.hillel.homework.hw8.linkedListPrev;
+package com.hillel.homework.hw8.linkedList.linkedListPrev;
 
 import java.util.Arrays;
 

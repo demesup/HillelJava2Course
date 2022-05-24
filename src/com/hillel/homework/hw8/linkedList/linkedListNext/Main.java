@@ -1,4 +1,4 @@
-package com.hillel.homework.hw8.linkedListNext;
+package com.hillel.homework.hw8.linkedList.linkedListNext;
 
 public class Main {
     public static void main(String[] args) {

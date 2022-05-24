@@ -1,4 +1,4 @@
-package com.hillel.homework.hw8.linkedListPrev;
+package com.hillel.homework.hw8.linkedList.linkedListPrev;
 
 public class MainPrev {
     public static void main(String[] args) {
