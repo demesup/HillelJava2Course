@@ -58,8 +58,8 @@ public class MyLinkedList {
     }
 
     private Node node(int index) {
-        Node node = last;
-        for (int i = index; i > size - 1; i--)
+        Node node = first;
+        for (int i = 0; i < index; i++)
             node = node.next;
         return node;
     }
@@ -80,10 +80,15 @@ public class MyLinkedList {
     }
 
     public void add(int number) {
+        if (size == 0) {
+            first = new Node(number, null);
+            last = first;
+            size++;
+            return;
+        }
         Node lastNumber = last;
-        Node newNumber = new Node(number, lastNumber);
-        last = newNumber;
-        if (size == 0) first = newNumber;
+        last = new Node(number, null);
+        lastNumber.next = last;
         size++;
     }
 
@@ -110,12 +115,7 @@ public class MyLinkedList {
             add(number);
             return;
         }
-        Node newNode = new Node(number, null);
-        if (first == null)
-            last = newNode;
-        else
-            first.next = newNode;
-        first = newNode;
+        first = new Node(number, first);
         size++;
     }
 
@@ -127,8 +127,8 @@ public class MyLinkedList {
     public String toString() {
         int[] result = new int[size];
         int i = 0;
-        for (Node j = first; j != null; j = j.next)
-            result[i++] = j.number;
+        for (Node node = first; node != null; node = node.next)
+            result[i++] = node.number;
         return Arrays.toString(result);
     }
 }
