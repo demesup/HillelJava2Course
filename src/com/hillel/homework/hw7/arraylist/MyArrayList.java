@@ -1,7 +1,7 @@
 package com.hillel.homework.hw7.arraylist;
 
 public class MyArrayList {
-    private int size = 10;
+    private int size;
     private String[] strings = new String[size];
 
 
@@ -15,7 +15,7 @@ public class MyArrayList {
     }
 
     public String get(int indexGet) {
-        if (!indexOutBounds(indexGet)) return "Error";
+        if (indexOutBounds(indexGet)) return "Error";
         return strings[indexGet];
     }
 
@@ -24,17 +24,18 @@ public class MyArrayList {
         strings[indexSet] = str;
     }
 
-    public boolean remove(int indexRemove) {
-        if (indexOutBounds(indexRemove)) return false;
-        for (int i = indexRemove; i < size - 1; i++) {
-            strings[i] = strings[i + 1];
+    public void remove(int indexRemove) {
+        if (indexOutBounds(indexRemove)) {
+            System.out.println("Strong does not exist");
+            return;
         }
+        if (size - 1 - indexRemove >= 0)
+            System.arraycopy(strings, indexRemove + 1, strings, indexRemove, size - 1 - indexRemove);
         size--;
         String[] stringsNew = new String[size];
         System.arraycopy(strings, 0, stringsNew, 0, size);
         strings = stringsNew;
         System.out.println("String is removed");
-        return true;
     }
 
     public void remove(String str) {
@@ -44,8 +45,6 @@ public class MyArrayList {
             return;
         }
         remove(indexRemove);
-        System.out.println("String is removed");
-        return;
     }
 
     private int indexOf(String str) {
@@ -60,7 +59,12 @@ public class MyArrayList {
     public void add(String str) {
 
         while (size >= strings.length) {
-            String[] stringsNew = new String[strings.length * 2];
+            String[] stringsNew;
+            if (strings.length == 0) {
+                stringsNew = new String[(strings.length + 1) * 2];
+            } else {
+                stringsNew = new String[strings.length * 2];
+            }
             System.arraycopy(strings, 0, stringsNew, 0, strings.length);
             strings = stringsNew;
         }
@@ -74,28 +78,23 @@ public class MyArrayList {
             return false;
         }
         add("0");
-        for (int i = size - 1; i > indexPaste; i--) {
-            strings[i] = strings[i - 1];
-        }
+        if (size - 1 - indexPaste >= 0)
+            System.arraycopy(strings, indexPaste, strings, indexPaste + 1, size - 1 - indexPaste);
 
         strings[indexPaste] = str;
         return true;
     }
 
     private boolean indexOutBounds(int index) {
-        if (index > this.size || index < 0) {
-            System.out.println("Index is out of bounds");
-            return true;
-        }
-        return false;
+        return index > strings.length - 1 || index < 0;
     }
 
     @Override
     public String toString() {
         if (strings == null)
             return "null";
-
         int lastIndex = strings.length - 1;
+        if (lastIndex < 0) return "null";
         while (strings[lastIndex] == null) {
             lastIndex--;
         }

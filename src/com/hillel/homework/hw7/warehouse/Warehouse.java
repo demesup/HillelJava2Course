@@ -67,8 +67,8 @@ public class Warehouse {
                         productsList.get(elementIndex).setAmount(amount);
                     } else {
                         System.out.println("Wrong amount format");
-                        break;
                     }
+                    break;
                 case "weight":
                     System.out.println("Enter new weight");
                     String strWeight = SCANNER.nextLine();
@@ -77,8 +77,8 @@ public class Warehouse {
                         productsList.get(elementIndex).setWeight(weight);
                     } else {
                         System.out.println("Wrong weight format");
-                        break;
                     }
+                    break;
                 case "price":
                     System.out.println("Enter new price");
                     String strPrice = SCANNER.nextLine();
@@ -87,8 +87,8 @@ public class Warehouse {
                         productsList.get(elementIndex).setPrice(price);
                     } else {
                         System.out.println("Wrong price format");
-                        break;
                     }
+                    break;
                 default:
                     System.out.println("Returning to main menu...");
             }
@@ -118,24 +118,34 @@ public class Warehouse {
     public static void addProduct() {
         System.out.println("Enter product name: ");
         String name = SCANNER.nextLine().replaceAll(" ", "").toLowerCase(Locale.ROOT);
-        if (!isFound(name)) {
-            System.out.println("Enter product amount: ");
-            String strAmount = SCANNER.nextLine();
-            if (isInteger(strAmount)) {
-                int amount = Integer.parseInt(strAmount);
-                System.out.println("Enter product weight: ");
-                String strWeight = SCANNER.nextLine();
-                if (isInteger(strWeight)) {
-                    int weight = Integer.parseInt(strWeight);
-                    System.out.println("Enter product price: ");
-                    String strPrice = SCANNER.nextLine();
-                    if (isInteger(strPrice)) {
-                        int price = Integer.parseInt(strPrice);
-                        productsList.add(new Products(name, amount, weight, price));
-                    } else System.out.println("Price format is nor int");
-                } else System.out.println("Weight format is nor int");
-            } else System.out.println("Amount format is nor int");
-        } else System.out.println("Product already exist");
+        if (isFound(name)) {
+            System.out.println("Product already exist");
+            return;
+        }
+        System.out.println("Enter product amount: ");
+        String strAmount = SCANNER.nextLine();
+        if (!isInteger(strAmount)) {
+            System.out.println("Amount format is nor int");
+            return;
+        }
+        int amount = Integer.parseInt(strAmount);
+        System.out.println("Enter product weight: ");
+        String strWeight = SCANNER.nextLine();
+        if (!isInteger(strWeight)) {
+            System.out.println("Weight format is nor int");
+            return;
+        }
+        int weight = Integer.parseInt(strWeight);
+        System.out.println("Enter product price: ");
+        String strPrice = SCANNER.nextLine();
+        if (!isInteger(strPrice)) {
+            System.out.println("Price format is nor int");
+            return;
+        }
+        int price = Integer.parseInt(strPrice);
+        productsList.add(new Products(name, amount, weight, price));
+
+
     }
 
     private static boolean isFound(String name) {
