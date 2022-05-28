@@ -59,21 +59,16 @@ public class MapPeople {
     public static void create() {
         System.out.println("Enter name");
         String name = SCANNER.nextLine().replaceAll(" ", "");
-        System.out.println("Enter year");
-        String yearStr = SCANNER.nextLine().replaceAll(" ", "");
-        if (isInteger(yearStr)) return;
-        int year = Integer.parseInt(yearStr);
-        System.out.println("Enter month");
-        String monthStr = SCANNER.nextLine().replaceAll(" ", "");
-        if (isInteger(monthStr)) return;
-        int month = Integer.parseInt(monthStr);
-        if (month < 1 || month > 12) return;
-        System.out.println("Enter day");
-        String dayStr = SCANNER.nextLine().replaceAll(" ", "");
-        if (isInteger(dayStr)) return;
-        int day = Integer.parseInt(dayStr);
-        if (day < 1 || day > 31) return;
-        LocalDate localDate = LocalDate.of(year, month, day);
+
+        LocalDate localDate;
+        System.out.println("Enter date in format 2000-02-02");
+        String str = SCANNER.nextLine();
+        try {
+            localDate = LocalDate.parse(str);
+        } catch (Exception e) {
+            System.out.println("Wrong date");
+            return;
+        }
         peopleByUser.put(name, localDate);
     }
 
@@ -112,7 +107,7 @@ public class MapPeople {
                 return;
             }
             int month = (Integer.parseInt(monthStr));
-             if (month > 0 && month < 13) {
+            if (month > 0 && month < 13) {
                 peopleByUser.entrySet().removeIf(entry -> entry.getValue().getMonthValue() == month);
                 System.out.println("Month is deleted");
             } else System.out.println("Not month number");
