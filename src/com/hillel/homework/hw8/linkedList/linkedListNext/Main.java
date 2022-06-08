@@ -7,7 +7,7 @@ public class Main {
 
         myLinkedList.remove(0);
         myLinkedList.set(5,56);
-        myLinkedList.get(0);
+        System.out.println(myLinkedList.get(0));
 
         myLinkedList.addFirst(100);
         System.out.println(myLinkedList.size());
@@ -24,6 +24,7 @@ public class Main {
 
         myLinkedList.addFirst(666);
         myLinkedList.set(1, 66);
+        myLinkedList.add(0,75);
         myLinkedList.add(5, 44);
         myLinkedList.add(15, 44);
 

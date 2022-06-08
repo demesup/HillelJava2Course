@@ -6,7 +6,11 @@ public class MyLinkedList {
 
     private class Node {
         int number;
-        Node next;
+        Node next = null;
+
+        public Node(int number) {
+            this.number = number;
+        }
 
         public Node(int number, Node next) {
             this.number = number;
@@ -34,27 +38,20 @@ public class MyLinkedList {
     }
 
     public int get(int indexGet) {
-        if (size == 0) {
-            System.out.println("Error, 0");
-            return 0;
+        try {
+            return node(indexGet).number;
+        } catch (Exception e) {
+            System.out.println("Something went wrong: " + e.getMessage() + " / return statement = -1");
+            return -1;
         }
-
-        if (indexOutBounds(indexGet)) {
-            System.out.print("Error, 0");
-            return 0;
-        }
-
-        return node(indexGet).number;
-
     }
 
     public void set(int indexSet, int number) {
-        if (indexOutBounds(indexSet)) {
-            System.out.println("Error, 000");
-            return;
+        try {
+            node(indexSet).number = number;
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
-
-        node(indexSet).number = number;
     }
 
     private Node node(int index) {
@@ -65,49 +62,47 @@ public class MyLinkedList {
     }
 
     public void remove(int indexRemove) {
-        if (indexOutBounds(indexRemove)) {
-            System.out.println("Error, 000");
-            return;
-        }
-        if (node(indexRemove) == last) {
-            node(indexRemove - 1).next = null;
-            last = node(indexRemove - 1);
-            return;
-        }
+        try {
+            if (indexOutBounds(indexRemove)) throw new Exception("Wrong index");
 
-        node(indexRemove - 1).next = node(indexRemove).next;
-        size--;
+            if (node(indexRemove) == node(size - 1)) {
+                node(indexRemove - 1).next = null;
+                return;
+            }
+            node(indexRemove - 1).next = node(indexRemove).next;
+            size--;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void add(int number) {
         if (size == 0) {
-            first = new Node(number, null);
+            first = new Node(number);
             last = first;
             size++;
             return;
         }
         Node lastNumber = last;
-        last = new Node(number, null);
+        last = new Node(number);
         lastNumber.next = last;
         size++;
     }
 
     public void add(int index, int number) {
-        if (indexOutBounds(index)) {
-            System.out.println("Error, 000");
-            return;
-        }
-        if (index == size - 1) {
-            add(number);
-            return;
-        }
-        if (index == 0) {
-            add(number);
-            return;
+        try {
+            if (indexOutBounds(index)) throw new Exception("Wrong index");
+
+            if (index == 0) {
+                addFirst(75);
+                return;
+            }
+            node(index - 1).next = new Node(number, node(index));
+            size++;
+        } catch (Exception e) {
+            System.out.println("Something went wrong: " + e.getMessage());
         }
 
-        node(index - 1).next = new Node(number, node(index));
-        size++;
     }
 
     public void addFirst(int number) {
@@ -125,10 +120,13 @@ public class MyLinkedList {
 
     @Override
     public String toString() {
+        if (first == null) return null;
         int[] result = new int[size];
         int i = 0;
-        for (Node node = first; node != null; node = node.next)
-            result[i++] = node.number;
+        for (Node node = first; i < size; node = node.next) {
+            result[i] = node.number;
+            i++;
+        }
         return Arrays.toString(result);
     }
 }
