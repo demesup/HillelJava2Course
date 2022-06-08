@@ -2,14 +2,15 @@ package com.hillel.homework.hw11;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class MultiThreadCounter {
-    private static int COUNTER = 0;
+public class MultiThreadCounterWithThreadAndAtomicInteger {
+    private static AtomicInteger COUNTER = new AtomicInteger(0);
 
     public static void main(String[] args) throws InterruptedException {
         List<Thread> threadList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            Thread thread = new Thread(new Counter());
+            CounterThread thread = new CounterThread();
             thread.start();
             threadList.add(thread);
         }
@@ -21,15 +22,13 @@ public class MultiThreadCounter {
     }
 
     private static void nextCounter() {
-        COUNTER++;
+        COUNTER.getAndIncrement();
     }
 
-    private static class Counter implements Runnable {
-
+    private static class CounterThread extends Thread {
         @Override
         public void run() {
-            Thread current = Thread.currentThread();
-            System.out.println("Starting thread: " + current.getName());
+            System.out.println("Starting thread: " + currentThread().getName());
             for (int i = 0; i < 1000; i++) {
                 nextCounter();
             }
