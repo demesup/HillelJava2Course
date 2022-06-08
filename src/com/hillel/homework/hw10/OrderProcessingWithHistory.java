@@ -94,7 +94,6 @@ public class OrderProcessingWithHistory {
         if (readLine == null) return;
         readLine = readLine.replaceAll("Order:status=", " ").replaceAll(", number=", " ")
                 .replaceAll(", accepted=", " ").replaceAll(", changed=", " ");
-
         String[] str = readLine.split(" ");
 
         for (Order order : ORDER_LIST) {
