@@ -6,7 +6,6 @@ public class MyArrayList {
 
 
     public MyArrayList() {
-        size = 0;
     }
 
     public MyArrayList(int size) {
@@ -15,8 +14,12 @@ public class MyArrayList {
     }
 
     public String get(int indexGet) {
-        if (indexOutBounds(indexGet)) return "Error";
-        return strings[indexGet];
+        try {
+            return strings[indexGet];
+        } catch (RuntimeException e) {
+            System.out.println("Error: " + e.getMessage() + " / Return statement = null");
+            return null;
+        }
     }
 
     public void set(int indexSet, String str) {
@@ -25,25 +28,17 @@ public class MyArrayList {
     }
 
     public void remove(int indexRemove) {
-        if (indexOutBounds(indexRemove)) {
-            System.out.println("Strong does not exist");
-            return;
-        }
-        if (size - 1 - indexRemove >= 0)
+        try {
             System.arraycopy(strings, indexRemove + 1, strings, indexRemove, size - 1 - indexRemove);
-        size--;
-        String[] stringsNew = new String[size];
-        System.arraycopy(strings, 0, stringsNew, 0, size);
-        strings = stringsNew;
-        System.out.println("String is removed");
+            size--;
+            System.out.println("String is removed");
+        } catch (RuntimeException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 
     public void remove(String str) {
         int indexRemove = indexOf(str);
-        if (indexRemove == -1) {
-            System.out.println("String does not exist");
-            return;
-        }
         remove(indexRemove);
     }
 
@@ -57,20 +52,22 @@ public class MyArrayList {
     }
 
     public void add(String str) {
-
-        while (size >= strings.length) {
-            String[] stringsNew;
-            if (strings.length == 0) {
-                stringsNew = new String[(strings.length + 1) * 2];
-            } else {
-                stringsNew = new String[strings.length * 2];
-            }
-            System.arraycopy(strings, 0, stringsNew, 0, strings.length);
-            strings = stringsNew;
-        }
-
-        strings[size] = str;
         size++;
+        if (size >= strings.length) grow();
+        strings[size-1] = str;
+
+    }
+
+    private void grow() {
+        String[] stringsNew;
+        if (strings.length == 0) {
+            stringsNew = new String[10];
+        } else {
+            stringsNew = new String[strings.length * 2];
+        }
+        System.arraycopy(strings, 0, stringsNew, 0, strings.length);
+        strings = stringsNew;
+
     }
 
     public boolean add(int indexPaste, String str) {
@@ -93,20 +90,15 @@ public class MyArrayList {
     public String toString() {
         if (strings == null)
             return "null";
-        int lastIndex = strings.length - 1;
-        if (lastIndex < 0) return "null";
-        while (strings[lastIndex] == null) {
-            lastIndex--;
-        }
-
         StringBuilder string = new StringBuilder();
         string.append('[');
-        for (int i = 0; ; i++) {
+        for (int i = 0; i < size; i++) {
             string.append(strings[i]);
-            if (i == lastIndex)
+            if (i == size - 1)
                 return string.append(']').toString();
             string.append(", ");
         }
+        return null;
     }
 
     public int size() {
