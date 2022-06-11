@@ -7,7 +7,9 @@ public class ParallelSwap {
     public static Swapper SWAPPER = new Swapper();
 
     public static void main(String[] args) throws InterruptedException {
-
+        SwapperTask swapperTask = new SwapperTask();
+        ExceptionHandler eh = new ExceptionHandler();
+Thread.setDefaultUncaughtExceptionHandler(eh);
 
         List<Thread> threads = new ArrayList<>();
         for (int i = 0; i < 10000; i++) {
@@ -17,13 +19,21 @@ public class ParallelSwap {
         }
 
 
-        for (Thread thread: threads) {
+        for (Thread thread : threads) {
             thread.join();
         }
 
 
         System.out.println(SWAPPER.name1);
         System.out.println(SWAPPER.name2);
+    }
+
+    public static class ExceptionHandler implements Thread.UncaughtExceptionHandler {
+
+        @Override
+        public void uncaughtException(Thread t, Throwable e) {
+            System.out.println("Thread " + t.getName() + " throws exception " + e.getMessage());
+        }
     }
 
     public static class SwapperTask implements Runnable {
@@ -38,9 +48,11 @@ public class ParallelSwap {
         String name2 = "Маша";
 
         public void swap() {
-            String temp = name1;
-            name1 = name2;
-            name2 = temp;
+            synchronized (this) {
+                String temp = name1;
+                name1 = name2;
+                name2 = temp;
+            }
         }
     }
 }
