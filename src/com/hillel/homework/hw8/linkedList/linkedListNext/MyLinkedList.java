@@ -28,7 +28,7 @@ public class MyLinkedList {
 
     private int size;
     private Node first;
-    private Node last;
+//    private Node last;
 
     public MyLinkedList() {
     }
@@ -79,13 +79,10 @@ public class MyLinkedList {
     public void add(int number) {
         if (size == 0) {
             first = new Node(number);
-            last = first;
             size++;
             return;
         }
-        Node lastNumber = last;
-        last = new Node(number);
-        lastNumber.next = last;
+        node(size - 1).next = new Node(number);
         size++;
     }
 
@@ -110,7 +107,8 @@ public class MyLinkedList {
             add(number);
             return;
         }
-        first = new Node(number, first);
+        Node firstNode = first;
+        first = new Node(number, firstNode);
         size++;
     }
 
