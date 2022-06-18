@@ -23,7 +23,7 @@ public class ExecutorCounter {
 
         ExecutorService executorService1 = Executors.newFixedThreadPool(1);
         for (int i = 0; i < 10; i++) {
-            executorService1.submit(new CallableCounter());
+            executorService1.submit(new Counter());
         }
 
         executorService1.shutdown();
