@@ -1,11 +1,10 @@
 package com.hillel.homework.hw13.Objects;
 
-public class Genre {
-    private String name;
+public class Genre extends LibraryObjects{
     private String description;
 
     public Genre(String name, String description) {
-        this.name = name;
+        super(name);
         this.description = description;
     }
 
@@ -13,14 +12,6 @@ public class Genre {
     public String toString() {
         return "\nGenreName='" + name + '\'' +
                 ", \ndescription='" + description + '\'';
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getDescription() {

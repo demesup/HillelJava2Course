@@ -2,30 +2,21 @@ package com.hillel.homework.hw13.Objects;
 
 import java.util.LinkedList;
 
-public class Author {
-    private String surname;
+public class Author extends LibraryObjects {
     private String firstname;
     private LinkedList<Book> books;
 
     public Author(String surname, String firstname, LinkedList<Book> books) {
-        this.surname = surname;
+        super(surname);
         this.firstname = firstname;
         this.books = books;
     }
 
     @Override
     public String toString() {
-        return "\nSurname='" + surname + '\'' +
+        return "\nSurname='" + name + '\'' +
                 ", firstname='" + firstname + '\'' +
                 ", books=" + books ;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
     }
 
     public String getFirstname() {

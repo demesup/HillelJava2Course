@@ -1,4 +1,4 @@
-package com.hillel.homework.hw13.Objects;
+package com.hillel.homework.hw13.enums;
 
 public enum AvailableObjects {
     AUTHOR("АВТОР"),

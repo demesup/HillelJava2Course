@@ -1,15 +1,13 @@
 package com.hillel.homework.hw13.Objects;
 
-import java.time.LocalDateTime;
 
-public class Book {
-    private String title;
+public class Book extends LibraryObjects{
     private String description;
     private int year;
     private Genre genre;
 
     public Book(String title, String description, int year, Genre genre) {
-        this.title = title;
+        super(title);
         this.description = description;
         this.year = year;
         this.genre = genre;
@@ -17,18 +15,10 @@ public class Book {
 
     @Override
     public String toString() {
-        return "\nTitle='" + title + '\'' +
+        return "\nTitle='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", year=" + year +
                 ", genre=" + genre ;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getDescription() {
