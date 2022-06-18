@@ -8,7 +8,6 @@ public class Main {
     static Thread worker = new Thread(new Task());
     static int current = -1;
 
-
     public static void main(String[] args) throws InterruptedException {
 
 
