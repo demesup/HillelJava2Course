@@ -47,7 +47,8 @@ public class OrderProcessingWithHistory {
         writeToFile(order.toString());
     }
 
-    private static void orderChange(Order order) {
+    private static void
+    orderChange(Order order) {
 
         try {
             if (order.getOrderStatus().ordinal() == OrderStatus.FAILED.ordinal())
