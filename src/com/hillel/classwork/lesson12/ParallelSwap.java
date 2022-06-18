@@ -9,7 +9,7 @@ public class ParallelSwap {
     public static void main(String[] args) throws InterruptedException {
         SwapperTask swapperTask = new SwapperTask();
         ExceptionHandler eh = new ExceptionHandler();
-Thread.setDefaultUncaughtExceptionHandler(eh);
+        Thread.setDefaultUncaughtExceptionHandler(eh);
 
         List<Thread> threads = new ArrayList<>();
         for (int i = 0; i < 10000; i++) {
