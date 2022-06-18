@@ -5,16 +5,22 @@ import java.util.ArrayList;
 public class JobQueue {
     ArrayList<Runnable> jobs = new ArrayList<>();
 
-    public synchronized void put(Runnable job){
-        jobs.add(job);
-        this.notifyAll();
+    public synchronized Runnable get() {
+        while (jobs.isEmpty()) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        Runnable task = jobs.get(0);
+        jobs.remove(task);
+        return task;
     }
 
-    public synchronized Runnable get() throws InterruptedException {
-        while (jobs.size() == 0) this.wait();
-
-        return jobs.get(0);
+    public synchronized void put(Runnable task) {
+        jobs.add(task);
+        notifyAll();
     }
-
 
 }

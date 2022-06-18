@@ -1,12 +1,14 @@
 package com.hillel.homework.hw12.jobQueue;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
-    static ArrayList<Collection<Worker>> collections = new ArrayList<>();
+    private static AtomicInteger taskCounter = new AtomicInteger(0);
 
 
     public static void main(String[] args) throws InterruptedException {
+        List<List<Worker>> lists = new ArrayList<>();
 
         ArrayList<Worker> uaWorkerList = new ArrayList<>();
         uaWorkerList.add(new Worker(123, "Васильев Евстахий Борисович", "+129381832", 4));
@@ -29,35 +31,46 @@ public class Main {
         frWorkerList.add(new Worker(439, "Мишина Стелла Богуславовна", "+8531674953", 3));
         frWorkerList.add(new Worker(576, "Агафонова Фаиза Наумовна", "+3647955246", 1));
 
-        List<Collection<Worker>> lists = new ArrayList<>();
         lists.add(frWorkerList);
         lists.add(roWorkerList);
         lists.add(uaWorkerList);
         lists.add(ukWorkerList);
 
         JobQueue jobQueue = new JobQueue();
-        for (Collection<Worker> list : lists) {
-            jobQueue.put(new WorkersSort(list));
-        }
-        for (Collection<Worker> list : lists) {
-            jobQueue.get();
+        Thread worker = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (taskCounter.get() < lists.size()) {
+                    taskCounter.getAndIncrement();
+                    Runnable task = jobQueue.get();
+                    task.run();
+                }
+            }
+        });
+
+        worker.start();
+        for (List<Worker> list : lists) {
+            jobQueue.put(workersSort(list));
         }
 
-        System.out.println(collections);
+        worker.join();
+        System.out.println("Sorted list of each country");
+        System.out.println(lists);
+
     }
 
 
-    public static class WorkersSort extends Thread {
-        TreeSet<Worker> workers = new TreeSet<>(new WorkerComparator());
+    public static Runnable workersSort(List<Worker> workers) {
+        return new Runnable() {
+            @Override
+            public void run() {
+                System.out.println(Thread.currentThread().getName());
 
-        public WorkersSort(Collection<Worker> workers) {
-            this.workers.addAll(workers);
-        }
+                Collections.sort(workers);
 
-        @Override
-        public void run() {
-            collections.add(workers);
-            for (Worker worker : workers) System.out.println(worker.getName() + worker.getQualification());
-        }
+                for (Worker worker : workers) System.out.println(worker.getQualification() + " " + worker.getName());
+
+            }
+        };
     }
 }
