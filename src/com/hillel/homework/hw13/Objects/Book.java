@@ -1,16 +1,17 @@
 package com.hillel.homework.hw13.Objects;
 
-
 public class Book extends LibraryObjects{
+    private Author author;
     private String description;
     private int year;
     private Genre genre;
 
-    public Book(String title, String description, int year, Genre genre) {
+    public Book(String title, String description, int year, Genre genre, Author author) {
         super(title);
         this.description = description;
         this.year = year;
         this.genre = genre;
+        this.author = author;
     }
 
     @Override

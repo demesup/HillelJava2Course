@@ -12,11 +12,16 @@ public class Author extends LibraryObjects {
         this.books = books;
     }
 
+    public Author(String name, String firstname) {
+        super(name);
+        this.firstname = firstname;
+    }
+
     @Override
     public String toString() {
         return "\nSurname='" + name + '\'' +
                 ", firstname='" + firstname + '\'' +
-                ", books=" + books ;
+                ", books=" + books;
     }
 
     public String getFirstname() {

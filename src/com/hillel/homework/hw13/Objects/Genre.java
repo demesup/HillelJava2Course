@@ -10,8 +10,8 @@ public class Genre extends LibraryObjects{
 
     @Override
     public String toString() {
-        return "\nGenreName='" + name + '\'' +
-                ", \ndescription='" + description + '\'';
+        return "{GenreName='" + name + '\'' +
+                ", description='" + description + "'}\n";
     }
 
     public String getDescription() {
