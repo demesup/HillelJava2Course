@@ -69,21 +69,19 @@ public class Library {
                  ObjectDoesNorExist e) {
             System.out.println(e.getMessage());
             start();
-        } catch (
-                IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("To confirm exit from program enter ex");
             if (!READER.readLine().replaceAll(" ", "").toLowerCase(Locale.ROOT).equals("ex")) {
                 start();
             } else System.out.println("Good bye :)");
-        } catch (
-                IOException e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
 
     }
 
     private static AvailableActions getAction() throws IOException {
-        System.out.println("Enter action: add, remove, print all genres");
+        System.out.println("Enter action: add, remove, print all genres/press any key to exit");
         String string = READER.readLine().replaceAll(" ", "");
 
         AvailableActions action = null;
@@ -100,23 +98,23 @@ public class Library {
         return action;
     }
 
-    private static void workWithAuthor(AvailableActions action, String surname) throws ObjectAlreadyExistException, IOException, ObjectDoesNorExist {
+    private static void workWithAuthor(AvailableActions action, String surname) throws IOException, ObjectAlreadyExistException {
+        int index = findObject(authors, surname);
+
         switch (action) {
             case ADD:
-                if (checkIfHave(authors, surname)) {
+                if (index != -1) {
                     throw new ObjectAlreadyExistException("Author already exist");
                 }
                 System.out.println("Enter firstname");
                 String firstname = READER.readLine();
                 System.out.println("Do you want to enter his books? Enter yes/ press any key");
                 Author author = new Author(surname, firstname);
-                if (READER.readLine().replaceAll(" ", "").equalsIgnoreCase("yes"))
-                    author.setBooks((LinkedList<Book>) enterAuthorsBooks(author));
                 authors.add(author);
                 break;
             case REMOVE:
                 if (genres.size() > 0) {
-                    genres.remove(findObject(authors, surname));
+                    genres.remove(index);
                 } else System.out.println("Empty list");
                 break;
             case PRINT:
@@ -136,74 +134,71 @@ public class Library {
         }
     }
 
-    private static List<Book> enterAuthorsBooks(Author author) throws IOException, RuntimeException {
-        List<Book> books = new LinkedList<>();
-        try {
-            String choice = "yes";
-            while (choice.replaceAll(" ", "").equalsIgnoreCase("yes")) {
-                System.out.println("Enter title");
-                String title = READER.readLine();
-                System.out.println("Enter book description in 1 line");
-                String description = READER.readLine();
-                System.out.println("Enter year in format 0000");
-                String yearSTr = READER.readLine();
-                while (yearSTr.length() != 4) {
-                    System.out.println("Wrong year, try again");
-                    yearSTr = READER.readLine();
-                }
-                int year = Integer.parseInt(yearSTr);
-                System.out.println(genres + "\nEnter genre");
-                String genreName = READER.readLine();
-                while (findObject(genres, genreName) < 0) {
-                    System.out.println("There is no genre " + genreName + " in the list. You need to create it first");
-                    workWithGenre(AvailableActions.ADD, genreName);
-                }
-                Genre genre = genres.get(findObject(genres, genreName));
-                books.add(new Book(title, description, year, genre, author));
-                System.out.println("Books:\n" + books);
-                System.out.println("Continue entering? yes/ any key");
-                choice = READER.readLine();
-            }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-            System.out.println("Continue entering? yes/ any key");
-            if (READER.readLine().equalsIgnoreCase("yes")) enterAuthorsBooks(author);
-        } catch (ObjectDoesNorExist | ObjectAlreadyExistException e) {
-            System.out.println(e.getMessage());
+    private static Book createBook(String title) throws IOException {
+        System.out.println("Enter book description in 1 line");
+        String description = READER.readLine();
+        System.out.println("Enter year in format 0000");
+        String yearSTr = READER.readLine();
+        while (yearSTr.length() != 4) {
+            System.out.println("Wrong year, try again");
+            yearSTr = READER.readLine();
         }
-        return books;
+        int year = Integer.parseInt(yearSTr);
 
+        int index = -1;
+        while (index == -1) {
+            System.out.println("Genres: ");
+            if (genres.size() > 0) {
+                for (int i = 0; i < genres.size(); i++) {
+                    System.out.println(i + " " + genres.get(i));
+                }
+                System.out.println("\nEnter number of genre or -1 to create new");
+                index = readNumber();
+            } else {
+                System.out.println("Genre list is empty. Adding new. Enter name");
+                String name = READER.readLine().replaceAll(" ", "");
+                workWithGenre(AvailableActions.ADD, name);
+            }
+        }
+        Genre genre = genres.get(index);
+        return new Book(title, description, year, genre);
     }
 
-    private static void workWithGenre(AvailableActions action, String name) throws IOException, ObjectAlreadyExistException, ObjectDoesNorExist {
-        switch (action) {
-            case ADD:
-                if (checkIfHave(genres, name)) {
-                    throw new ObjectAlreadyExistException("Genre already exist");
-                }
-                System.out.println("Enter genre description in 1 line");
-                String description = READER.readLine();
-                genres.add(new Genre(name, description));
-                break;
-            case REMOVE:
-                if (genres.size() > 0) {
-                    int index = findObject(genres, name);
-                    if (index > -1) {
-                        genres.remove(index);
-                        System.out.println("Genre is removed");
-                    } else System.out.println("No genre with name " + name);
+    private static int readNumber() throws IOException {
+        return Integer.parseInt(READER.readLine());
+    }
 
-                } else System.out.println("Empty genre list");
-                break;
-            case PRINT:
-                if (genres.size() < 1) {
-                    System.out.println("Empty genre list");
+    private static void workWithGenre(AvailableActions action, String name) throws IOException {
+        try {
+            switch (action) {
+                case ADD:
+                    if (checkIfHave(genres, name)) {
+                        throw new ObjectAlreadyExistException("Genre already exist");
+                    }
+                    System.out.println("Enter genre description in 1 line");
+                    String description = READER.readLine();
+                    genres.add(new Genre(name, description));
                     break;
-                }
-                System.out.println(genres);
-        }
-        System.out.println("Stay in working with genres field? Yes / any key");
-        if (READER.readLine().replaceAll(" ", "").equalsIgnoreCase("yes")) {
+                case REMOVE:
+                    if (genres.size() > 0) {
+                        int index = findObject(genres, name);
+                        if (index > -1) {
+                            genres.remove(index);
+                            System.out.println("Genre is removed");
+                        } else System.out.println("No genre with name " + name);
+
+                    } else System.out.println("Empty genre list");
+                    break;
+                case PRINT:
+                    if (genres.size() < 1) {
+                        System.out.println("Empty genre list");
+                        break;
+                    }
+                    System.out.println(genres);
+            }
+        } catch (ObjectAlreadyExistException e) {
+            System.out.println(e.getMessage());
+        } finally {
             action = getAction();
             String name1 = null;
             if (!action.equals(AvailableActions.PRINT)) {
@@ -214,7 +209,45 @@ public class Library {
         }
     }
 
-    private static void workWithBook(AvailableActions action, String s) {
+
+    private static void workWithBook(AvailableActions action, String title) throws ObjectAlreadyExistException, IOException, ObjectDoesNorExist {
+        {
+            switch (action) {
+                case ADD:
+                    if (checkIfHave(books, title)) {
+                        throw new ObjectAlreadyExistException("Book already exist");
+                    }
+                    books.add(createBook(title));
+                    System.out.println("Book is added");
+                    break;
+                case REMOVE:
+                    if (books.size() > 0) {
+                        int index = findObject(books, title);
+                        if (index > -1) {
+                            books.remove(index);
+                            System.out.println("Book is removed");
+                        } else System.out.println("No book with name " + title);
+
+                    } else System.out.println("Empty book list");
+                    break;
+                case PRINT:
+                    if (books.size() < 1) {
+                        System.out.println("Empty books list");
+                        break;
+                    }
+                    System.out.println(books);
+            }
+            System.out.println("Stay in working with books field? Yes / any key");
+            if (READER.readLine().replaceAll(" ", "").equalsIgnoreCase("yes")) {
+                action = getAction();
+                String name1 = null;
+                if (!action.equals(AvailableActions.PRINT)) {
+                    System.out.println("Enter name: ");
+                    name1 = READER.readLine();
+                }
+                workWithBook(action, name1);
+            }
+        }
     }
 
     private static int findObject(List<? extends LibraryObjects> objects, String name) {
@@ -227,7 +260,7 @@ public class Library {
     private static boolean checkIfHave(List<? extends LibraryObjects> objects, String name) {
         if (objects.size() == 0) return false;
         for (LibraryObjects object : objects) {
-            if (object.getName().equals(name)) return true;
+            if (object.getName().equalsIgnoreCase(name)) return true;
         }
         return false;
     }

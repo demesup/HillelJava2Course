@@ -6,12 +6,13 @@ public class Book extends LibraryObjects{
     private int year;
     private Genre genre;
 
-    public Book(String title, String description, int year, Genre genre, Author author) {
-        super(title);
+
+    public Book(String name, String description, int year, Genre genre) {
+        super(name);
         this.description = description;
         this.year = year;
         this.genre = genre;
-        this.author = author;
+        this.author = null;
     }
 
     @Override
@@ -20,6 +21,14 @@ public class Book extends LibraryObjects{
                 ", description='" + description + '\'' +
                 ", year=" + year +
                 ", genre=" + genre ;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     public String getDescription() {

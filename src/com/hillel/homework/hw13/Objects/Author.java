@@ -4,19 +4,16 @@ import java.util.LinkedList;
 
 public class Author extends LibraryObjects {
     private String firstname;
-    private LinkedList<Book> books;
+    private LinkedList<Book> books = new LinkedList<>();
 
-    public Author(String surname, String firstname, LinkedList<Book> books) {
+    public Author(String surname, String firstname) {
         super(surname);
         this.firstname = firstname;
-        this.books = books;
     }
 
-    public Author(String name, String firstname) {
-        super(name);
-        this.firstname = firstname;
+    public void addToAuthorList(Book book){
+        books.add(book);
     }
-
     @Override
     public String toString() {
         return "\nSurname='" + name + '\'' +
