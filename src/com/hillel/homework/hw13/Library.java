@@ -13,6 +13,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import static com.hillel.homework.hw13.ExtraMethods.getAction;
+
 
 public class Library {
     static BufferedReader READER = new BufferedReader(new InputStreamReader(System.in));
@@ -25,7 +27,10 @@ public class Library {
 
         start();
 
+        System.out.println("Good bye! :(");
+
     }
+    // FIXME: 20.06.2022  if null input program falls
 
     private static void start() throws IOException {
         try {
@@ -44,24 +49,19 @@ public class Library {
             if (field == null) {
                 throw new IllegalArgumentException("You can enter only fields");
             }
-            AvailableActions action = FieldProcessing.getStaticAction();
-            String name = null;
-            if (action.equals(AvailableActions.ADD)) {
-                System.out.println("Enter name:");
-                name = READER.readLine();
-            }
+            AvailableActions action = getAction();
+
             switch (field) {
                 case AUTHOR:
-                    new Author().workWithField(action, name);
+                    new Author().workWithField(action);
                 case GENRE:
-                    new Genre().workWithField(action, name);
+                    new Genre().workWithField(action);
                 case BOOK:
-                    new Book().workWithField(action, name);
+                    new Book().workWithField(action);
             }
         } catch (IllegalArgumentException|ObjectDoesNorExist|ObjectAlreadyExistException e) {
             System.out.println("If you want to exit from program enter exit");
             if (!READER.readLine().replaceAll(" ", "").equalsIgnoreCase("exit")) start();
-            System.out.println("Good bye! :(");
         }
     }
 }

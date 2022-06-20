@@ -1,5 +1,6 @@
 package com.hillel.homework.hw13.Objects;
 
+import com.hillel.homework.hw13.ExtraMethods;
 import com.hillel.homework.hw13.FieldProcessing;
 import com.hillel.homework.hw13.enums.AvailableActions;
 import com.hillel.homework.hw13.exceptions.ObjectAlreadyExistException;
@@ -8,9 +9,12 @@ import com.hillel.homework.hw13.exceptions.ObjectDoesNorExist;
 import java.io.IOException;
 import java.util.LinkedList;
 
+import static com.hillel.homework.hw13.ExtraMethods.findObject;
+import static com.hillel.homework.hw13.ExtraMethods.getAction;
+
 public class Author extends LibraryObjects {
     private String firstname;
-    private LinkedList<Book> books = new LinkedList<>();
+    private LinkedList<Book> authorsBooks = new LinkedList<>();
 
     public Author() {
     }
@@ -21,48 +25,58 @@ public class Author extends LibraryObjects {
     }
 
     @Override
-    public void workWithField(AvailableActions action, String surname) throws ObjectAlreadyExistException, IOException, ObjectDoesNorExist {
-        int index = FieldProcessing.findObject(authors, surname);
-
-        switch (action) {
-            case ADD:
-                if (index != -1) {
-                    throw new ObjectAlreadyExistException("Author already exist");
-                }
-                System.out.println("Enter firstname");
-                String firstname = READER.readLine();
-                System.out.println("Do you want to enter his books? Enter yes/ press any key");
-                Author author = new Author(surname, firstname);
-                authors.add(author);
-                break;
-            case REMOVE:
-                if (surname != null) {
-                    index = FieldProcessing.findObject(authors, surname);
-                    authors.remove(index);
-                } else System.out.println("Empty authors list");
-                break;
-            case PRINT:
-                if (authors.size() < 1) System.out.println("Empty authors list");
-                System.out.println(action);
-
-        }
-        System.out.println("Stay in working with authors field? Yes / any key");
-        if (READER.readLine().replaceAll(" ", "").equalsIgnoreCase("yes")) {
-            action = getAction();
-            String name = null;
-            if (!action.equals(AvailableActions.PRINT)) {
-                System.out.println("Enter name: ");
-                name = READER.readLine();
+    public void workWithField(AvailableActions action) throws ObjectAlreadyExistException, IOException, ObjectDoesNorExist {
+        try {
+            switch (action) {
+                case ADD:
+                    add();
+                    break;
+                case REMOVE:
+                    remove();
+                    break;
+                case PRINT:
+                    print(authors);
             }
-            workWithField(action, name);
+        } catch (ObjectAlreadyExistException | IOException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            System.out.println("You are in author field");
+            workWithField(getAction());
         }
+    }
+
+    public void remove() throws IOException, ObjectDoesNorExist {
+        if (authors.size() > 0) {
+            System.out.println("Enter surname:");
+            String surname = READER.readLine();
+            int index = findObject(authors, surname);
+            if (index == -1) throw new ObjectDoesNorExist("No author with this name");
+            authors.remove(index);
+            System.out.println("Author is removed");
+        } else System.out.println("Empty authors list");
+    }
+    public void add() throws ObjectAlreadyExistException, IOException {
+        System.out.println("Enter surname:");
+        String surname = READER.readLine();
+        int index = findObject(authors,surname);
+        if (index != -1) {
+            throw new ObjectAlreadyExistException("Author already exist");
+        }
+        System.out.println("Enter firstname");
+        String firstname = READER.readLine();
+        Author author = new Author(surname, firstname);
+        authors.add(author);
+    }
+
+    public void addBook(Book book) {
+        authorsBooks.add(book);
     }
 
     @Override
     public String toString() {
         return "\nSurname='" + name + '\'' +
                 ", firstname='" + firstname + '\'' +
-                ", books=" + books;
+                ", books=" + authorsBooks;
     }
 
     public String getFirstname() {
@@ -73,11 +87,11 @@ public class Author extends LibraryObjects {
         this.firstname = firstname;
     }
 
-    public LinkedList<Book> getBooks() {
-        return books;
+    public LinkedList<Book> getAuthorsBooks() {
+        return authorsBooks;
     }
 
-    public void setBooks(LinkedList<Book> books) {
-        this.books = books;
+    public void setAuthorsBooks(LinkedList<Book> authorsBooks) {
+        this.authorsBooks = authorsBooks;
     }
 }
