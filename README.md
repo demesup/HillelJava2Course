@@ -1,4 +1,4 @@
 # HillelJava2Course
-It was my secong Java course. I really enjoyed it)
+It was my second Java course. I really enjoyed it)
 There are Exceptions, Threads, OOP, small programs, where I`ll add some tests,
 My LInked/ArrayList, Queue, Stack etc.
